@@ -38,7 +38,7 @@ def call(){
 
                                     switch(tec) {
                                         case 'gradle':
-                                            for( String _et : etapas )  
+                                            for( String _et : etapas )  {
                                                 gradle_pasos.contains(_et) ? println('etapas : ' + _et) : error ('La etapa : ' + _et + ' no es valida, favor ingrese una existente, dentro de los valores son : BUILD\nTEST\nSONAR\nINICIAR\nTEST?REST\nNEXUS ')
                                             }
                                         break
