@@ -86,8 +86,8 @@ def call(){
                         String[] etapas
 
                         echo "Tecnologia: ${params.TECNOLOGIA}" 
-
-                       
+                        gradle.todos_los_pasos()
+                        /*
                         switch(params.TECNOLOGIA) {
                             case 'GRADLE':
                                 //Valido que si es vacio todos los procesos , de lo contrario solo los escogidos
@@ -116,6 +116,7 @@ def call(){
                                 } // fin if env.Tarea
                             break
                         }//fin switch
+                        */
                         
                     } //fin script Pipeline
                 }// fin steps
