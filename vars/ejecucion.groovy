@@ -22,6 +22,7 @@ def call(){
                     script{
                             try {
                                 env.TAREA = 'ValidacionParametros'
+                                env.MensajeErrorSlack = ''
                                 String tec = params.TECNOLOGIA.toUpperCase()
                                 String stage = params.STAGE.toUpperCase()
                                 String[] etapas
@@ -45,6 +46,7 @@ def call(){
                                         println('etapas : ' + _et)
                                         existe_etapa = gradle_pasos.contains(_et); 
                                         if(existe_etapa == false){
+                                            env.MensajeErrorSlack = 'La etapa : ' + _et + ' no es valida, favor ingrese una existente, dentro de los valores son : BUILD\nTEST\nSONAR\nINICIAR\nTEST?REST\nNEXUS'
                                             error ('La etapa : ' + _et + ' no es valida, favor ingrese una existente, dentro de los valores son : BUILD\nTEST\nSONAR\nINICIAR\nTEST?REST\nNEXUS ')
                                         }
                                     }
@@ -122,7 +124,7 @@ def call(){
         post {
 
             failure {
-                slackSend channel: 'U01DD0LGZLJ', color: 'danger', message: " [ Alexander Sanhueza ][ ${env.JOB_NAME} ][ ${params.TECNOLOGIA} ] Ejecución fallida en stage ${env.TAREA} [${mensaje}]. ", teamDomain: 'dipdevopsusach2020', tokenCredentialId: 'slack-diplomado-asc'
+                slackSend channel: 'U01DD0LGZLJ', color: 'danger', message: " [ Alexander Sanhueza ][ ${env.JOB_NAME} ][ ${params.TECNOLOGIA} ] Ejecución fallida en stage ${env.TAREA} [${env.MensajeErrorSlack}]. ", teamDomain: 'dipdevopsusach2020', tokenCredentialId: 'slack-diplomado-asc'
             }
             success {
                 slackSend channel: 'U01DD0LGZLJ', color: 'good', message: " [ Alexander Sanhueza ][ ${env.JOB_NAME} ][ ${params.TECNOLOGIA} ] Ejecucion Exitosa. ", teamDomain: 'dipdevopsusach2020', tokenCredentialId: 'slack-diplomado-asc'
