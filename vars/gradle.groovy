@@ -11,6 +11,7 @@ def todos_los_pasos(){
          env.TAREA = 'build & test'
         sh 'gradle clean build' //gradlew es para que se ejecute con wrapper
     } //end build
+    /*
     stage('sonar'){
          env.TAREA = 'sonar'
         //SonnarScanner
@@ -35,6 +36,7 @@ def todos_los_pasos(){
         env.TAREA = 'nexus'
         nexusPublisher nexusInstanceId: 'nexus', nexusRepositoryId: 'test-nexus', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: 'jar', filePath: '/Users/kuroi/.jenkins/workspace/_multibranch_feature-dir-inicial/build/libs/DevOpsUsach2020-0.0.1.jar']], mavenCoordinate: [artifactId: 'DevOpsUsach2020', groupId: 'com.devopsusach2020', packaging: 'jar', version: '0.0.1']]]
     }//end nexus
+    */
 
 }
 
