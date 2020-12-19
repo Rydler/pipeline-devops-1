@@ -27,11 +27,12 @@ def call(){
                                 //Defino Arreglo de Pasos Existentes por Tecnologia
                                 def gradle_pasos = ['BUILD', 'TEST', 'SONAR', 'INICIAR','TEST_REST','NEXUS']; 
                                 def maven_pasos = ['BUILD', 'TEST','JAR_CODE', 'SONAR', 'INICIAR','TEST_REST'];
-                                echo "TEC ingreso: ${params.TECNOLOGIA}" 
-                                echo "TEC despues: ${tec}" 
+                                echo "TEC : ${tec}" 
                                 //Reviso si los pasos ingresados corresponden a los existentes, si no envio error
                                 if (stage.le)
                                 resultado = stage.length()>0 ? true : false
+                                echo "Stage : ${stage}" 
+                                echo "Se ingresaron etapas ?: ${resultado}" 
                                 //Comprobe que se ingresaron etapas
                                 if(resultado){
                                     etapas = stage.split(';');
