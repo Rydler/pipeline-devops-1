@@ -84,16 +84,13 @@ def call(){
                         env.Tarea = 'Pipeline'
                         env.MensajeErrorSlack = ''
                         String[] etapas
-
-                        echo "Tecnologia: ${params.TECNOLOGIA}" 
-                        gradle.todos_los_pasos()
-                        /*
+    
                         switch(params.TECNOLOGIA) {
                             case 'GRADLE':
                                 //Valido que si es vacio todos los procesos , de lo contrario solo los escogidos
-                                if(env.Tarea.equals('')){
+                                if(env.Etapa.equals('')){
                                     println('Entre aca')
-                                    gradle.call()
+                                    gradle.todos_los_pasos()
                                 }else{ // Ejecutar Cada Paso Previamente Validado como Existente
                                     etapas = env.Etapa.split(';');
                                     for( String _et : etapas )  {
@@ -105,8 +102,8 @@ def call(){
                             break
                             case 'MAVEN':
                                 //Valido que si es vacio todos los procesos , de lo contrario solo los escogidos
-                                if(env.Tarea.equals('')){
-                                    maven.call()
+                                if(env.Etapa.equals('')){
+                                    maven.todos_los_pasos()
                                 }else{ // Ejecutar Cada Paso Previamente Validado como Existente
                                     etapas = env.Etapa.split(';');
                                     for( String _et : etapas )  {
@@ -116,7 +113,7 @@ def call(){
                                 } // fin if env.Tarea
                             break
                         }//fin switch
-                        */
+                        
                         
                     } //fin script Pipeline
                 }// fin steps
