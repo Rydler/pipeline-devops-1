@@ -8,7 +8,7 @@ def call(){
 
             string(name: 'STAGE', defaultValue: '', description: 'Elección de cual etapa elegir a procesar dentro del Pipeline')
         }
-        env.TAREA = ''
+        
         //lo que debe hacer
         //1. Parametro vacio = todos los pasos
         //2. Parametro 1 o N = Puede ser 1 o Varios pasos separados por ";"
