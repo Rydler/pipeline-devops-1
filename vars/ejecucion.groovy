@@ -4,7 +4,7 @@ def call(){
         agent any
 
         parameters { 
-            choice(name: 'TECNOLOGIA', choices: ['maven', 'gradle'], description: 'Elección de herramienta de empaquetamiento'),
+            choice(name: 'TECNOLOGIA', choices: ['maven', 'gradle'], description: 'Elección de herramienta de empaquetamiento')
             choice(name: 'STAGE', defaultValue: '', description: 'Elección de cual etapa Pipeline')
         }
 
