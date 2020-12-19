@@ -5,8 +5,8 @@ def call(){
         agent any
 
         //Variables Globales de Stages Pipeline
-        String tec = ''
-        String stage = ''
+        def String tec
+        def String stage
 
         parameters { 
             choice(name: 'TECNOLOGIA', choices: ['gradle', 'maven'], description: 'Elección Herramienta de automatización de construcción de código de software')
