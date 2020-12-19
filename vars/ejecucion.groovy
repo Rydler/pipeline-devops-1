@@ -41,7 +41,7 @@ def call(){
 
                                 //Compruebo que se ingresaron etapas y valido que sean todas validas para el siguiente Stage
                                 if(resultado){
-                                    etapas = stage.split(';');
+                                    etapas = env.stage.split(';');
 
                                     //Paso la etapa de validar que son existentes para ejecutarse
                                     switch(tec) {
@@ -51,7 +51,7 @@ def call(){
                                                 existe_etapa = gradle_pasos.contains(_et); 
                                                 if(existe_etapa == false){
                                                     env.MensajeErrorSlack = 'La etapa : ' + _et + ' no es valida, favor ingrese una existente, dentro de los valores son : BUILD\nTEST\nSONAR\nINICIAR\nTEST_REST\nNEXUS'
-                                                    error ('xx')
+                                                    error (env.MensajeErrorSlack)
                                                 }
                                             }
                                         break
@@ -61,7 +61,7 @@ def call(){
                                                 existe_etapa = maven_pasos.contains(_et); 
                                                 if(existe_etapa == false){
                                                     env.MensajeErrorSlack = 'La etapa : ' + _et + ' no es valida, favor ingrese una existente, dentro de los valores son : BUILD\nTEST\nJAR_CODE\nSONAR\nINICIAR\nTEST_REST'
-                                                    error ('xx')
+                                                    error (env.MensajeErrorSlack)
                                                 }
                                             }
                                         break
@@ -89,7 +89,7 @@ def call(){
                         echo "Stage : ${env.stage}"
                         //Invocar Archivo dependiendo el parametro de Entrada
                         /*
-                         switch(tec) {
+                         switch(env.tec) {
                                         case 'gradle':
                                             for( String _et : etapas )  {
                                                 println('etapas a Procesar : ' + _et)
@@ -106,7 +106,7 @@ def call(){
 
                                     }*/
                                     /*
-                        if(tec == 'gradle'){
+                        if(env.tec == 'gradle'){
                             //gradle.todos_los_pasos()
                             echo 'GRADLE TODOS LOS PASOS !!!'
                         }else{
