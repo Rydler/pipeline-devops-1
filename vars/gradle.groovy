@@ -38,4 +38,12 @@ def todos_los_pasos(){
 
 }
 
+def build(){
+    stage('BUILD'){
+        env.TAREA = 'build'
+        //sh 'gradle clean build' //gradlew es para que se ejecute con wrapper
+        sh 'echo hola mundo'
+    } //end build
+}
+
 return this;

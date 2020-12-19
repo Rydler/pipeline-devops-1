@@ -83,37 +83,36 @@ def call(){
 
                         env.Tarea = 'Pipeline'
                         env.MensajeErrorSlack = ''
+                        String[] etapas
 
                         echo "Tecnologia: ${params.TECNOLOGIA}" 
                         echo "Etapa : ${env.Etapa}"
                         //Invocar Archivo dependiendo el parametro de Entrada
-                        /*
-                         switch(params.TECNOLOGIA) {
-                                        case 'gradle':
-                                            for( String _et : etapas )  {
-                                                println('etapas a Procesar : ' + _et)
-                                          
-                                              
-                                            }
-                                        break
-                                        case 'maven':
-                                            for( String _et : etapas )  {
-                                                println('etapas a Procesar : ' + _et)
-                                              
-                                            }
-                                        break
-
+                        switch(params.TECNOLOGIA) {
+                            case 'GRADLE':
+                                //Valido que si es vacio todos los procesos , de lo contrario solo los escogidos
+                                if(env.Tarea == ''){
+                                //gradle.todos_los_pasos()
+                                echo 'GRADLE TODOS LOS PASOS !!!'
+                                }else{ // Ejecutar Cada Paso Previamente Validado como Existente
+                                    etapas = env.Etapa.split(';');
+                                    for( String _et : etapas )  {
+                                        println('Etapa : ' + _et)
+                                        println("gradle.${_et}()")
+                                        sh "gradle.${_et}()"
                                     }
-                        if(params.TECNOLOGIA == 'gradle'){
-                            //gradle.todos_los_pasos()
-                            echo 'GRADLE TODOS LOS PASOS !!!'
-                        }else{
-                            //maven.todos_los_pasos()
-                            echo 'MAVEN TODOS LOS PASOS !!!'
-                        }
-                        */
-                    }
-                }
+                                } // fin if env.Tarea
+                              
+                            break
+                            case 'MAVEN':
+                                for( String _et : etapas )  {
+                                    println('etapas a Procesar : ' + _et)
+                                  
+                                }
+                            break
+                        }//fin switch
+                    } //fin script Pipeline
+                }// fin steps
             }//END Pipeline Stage
             
            
