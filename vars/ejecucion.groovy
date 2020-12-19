@@ -29,6 +29,10 @@ def call(){
                                 def gradle_pasos = ['BUILD', 'TEST', 'SONAR', 'INICIAR','TEST_REST','NEXUS']; 
                                 def maven_pasos = ['BUILD', 'TEST','JAR_CODE', 'SONAR', 'INICIAR','TEST_REST'];
 
+                                def lst = [11, 12, 13, 14]; 
+		
+                                println(lst.contains(12)); 
+
                                 //Variables
                                 echo "TEC : ${tec}" 
                                 echo "Stage : ${stage}" 
@@ -43,11 +47,11 @@ def call(){
                                     for( String _et : etapas )  {
                                         println('etapas : ' + _et)
                                         
-                                        !(gradle_pasos.contains(_et)) {
+                                        //!(gradle_pasos.contains(_et)) {
                                             //Imprimo mensaje si no hay una etapa valida
-                                            println('etapas NO EXISTENTE : ' + _et)
+                                            //println('etapas NO EXISTENTE : ' + _et)
                                             //error ('La etapa : ' + _et + ' no es valida, favor ingrese una existente, dentro de los valores son : BUILD\nTEST\nSONAR\nINICIAR\nTEST?REST\nNEXUS ')
-                                        }
+                                        //}
                                         
                                     }
                                     //Paso la etapa de validar que son existentes para ejecutarse
@@ -80,7 +84,7 @@ def call(){
                                 //echo "Hello ${params.TECNOLOGIA}" // y
                                 //echo "Hello ${params.STAGE}" // y
                             } catch(Exception e) {
-                                error ('Ha ocurrido un error inesperado en ValidacionPametros: ' + e)
+                                error ('Ha ocurrido un error inesperado en ValidacionParametros: ' + e)
                             }
                         }
                     }//fin steps validacionParametros
