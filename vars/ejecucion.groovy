@@ -91,7 +91,7 @@ def call(){
                         switch(params.TECNOLOGIA) {
                             case 'GRADLE':
                                 //Valido que si es vacio todos los procesos , de lo contrario solo los escogidos
-                                if(env.Tarea == ''){
+                                if(env.Tarea.equals('')){
                                     println('Entre aca')
                                     gradle.todos_los_pasos()
                                 }else{ // Ejecutar Cada Paso Previamente Validado como Existente
@@ -105,7 +105,7 @@ def call(){
                             break
                             case 'MAVEN':
                                 //Valido que si es vacio todos los procesos , de lo contrario solo los escogidos
-                                if(env.Tarea == ''){
+                                if(env.Tarea.equals('')){
                                     maven.todos_los_pasos()
                                 }else{ // Ejecutar Cada Paso Previamente Validado como Existente
                                     etapas = env.Etapa.split(';');
