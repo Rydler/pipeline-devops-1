@@ -4,7 +4,7 @@
 	ejecucion.call()
 */
 
-def todos_los_pasos(){
+def call(){
   
     //Escribir directamente el código del stage, sin agregarle otra clausula de Jenkins.
     stage('build & test'){
