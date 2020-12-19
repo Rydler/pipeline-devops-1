@@ -8,7 +8,7 @@ def call(){
 
             string(name: 'STAGE', defaultValue: '', description: 'Elección de cual etapa elegir a procesar dentro del Pipeline')
         }
-
+        env.TAREA = ''
         //lo que debe hacer
         //1. Parametro vacio = todos los pasos
         //2. Parametro 1 o N = Puede ser 1 o Varios pasos separados por ";"
@@ -21,10 +21,11 @@ def call(){
                 steps{
                     script{
                             try {
-                                env.TAREA = ''
+                                env.TAREA = 'ValidacionParametros'
                                 String tec = params.TECNOLOGIA.toUpperCase()
                                 String stage = params.STAGE.toUpperCase()
-                                String[] etapas;
+                                String[] etapas
+                                def mensaje = 'dsadasdsd'
                                 //Defino Arreglo de Pasos Existentes por Tecnologia
                                 def gradle_pasos = ['BUILD', 'TEST', 'SONAR', 'INICIAR','TEST_REST','NEXUS']; 
                                 def maven_pasos = ['BUILD', 'TEST','JAR_CODE', 'SONAR', 'INICIAR','TEST_REST'];
@@ -46,18 +47,12 @@ def call(){
                                         if(existe_etapa == false){
                                             error ('La etapa : ' + _et + ' no es valida, favor ingrese una existente, dentro de los valores son : BUILD\nTEST\nSONAR\nINICIAR\nTEST?REST\nNEXUS ')
                                         }
-                                        //!(gradle_pasos.contains(_et)) {
-                                            //Imprimo mensaje si no hay una etapa valida
-                                            //println('etapas NO EXISTENTE : ' + _et)
-                                            //error ('La etapa : ' + _et + ' no es valida, favor ingrese una existente, dentro de los valores son : BUILD\nTEST\nSONAR\nINICIAR\nTEST?REST\nNEXUS ')
-                                        //}
-                                        
                                     }
                                    
                                 }
                               
                             } catch(Exception e) {
-                                error ('Ha ocurrido un error inesperado en ValidacionParametros: ' + e)
+                                error ('Ha ocurrido un error en ValidacionParametros: ' + e)
                             }
                         }
                     }//fin steps validacionParametros
@@ -127,7 +122,7 @@ def call(){
         post {
 
             failure {
-                slackSend channel: 'U01DD0LGZLJ', color: 'danger', message: " [ Alexander Sanhueza ][ ${env.JOB_NAME} ][ ${params.TECNOLOGIA} ] Ejecución fallida en stage ${env.TAREA} . ", teamDomain: 'dipdevopsusach2020', tokenCredentialId: 'slack-diplomado-asc'
+                slackSend channel: 'U01DD0LGZLJ', color: 'danger', message: " [ Alexander Sanhueza ][ ${env.JOB_NAME} ][ ${params.TECNOLOGIA} ] Ejecución fallida en stage ${env.TAREA} [${mensaje}]. ", teamDomain: 'dipdevopsusach2020', tokenCredentialId: 'slack-diplomado-asc'
             }
             success {
                 slackSend channel: 'U01DD0LGZLJ', color: 'good', message: " [ Alexander Sanhueza ][ ${env.JOB_NAME} ][ ${params.TECNOLOGIA} ] Ejecucion Exitosa. ", teamDomain: 'dipdevopsusach2020', tokenCredentialId: 'slack-diplomado-asc'
