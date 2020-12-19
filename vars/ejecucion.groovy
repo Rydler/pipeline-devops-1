@@ -92,17 +92,12 @@ def call(){
                             case 'GRADLE':
                                 //Valido que si es vacio todos los procesos , de lo contrario solo los escogidos
                                 if(env.Tarea == ''){
-                                //gradle.todos_los_pasos()
-                                echo 'GRADLE TODOS LOS PASOS !!!'
+                                    //gradle.todos_los_pasos()
+                                    println('TODOS LOS PASOS')
                                 }else{ // Ejecutar Cada Paso Previamente Validado como Existente
                                     etapas = env.Etapa.split(';');
                                     for( String _et : etapas )  {
-                                        println('Etapa : ' + _et)
-                                        println("gradle.${_et}()")
-                                        //sh "gradle.${_et}()"
-                                        sh 'echo hola'
-                                        //sh 'gradle.build()'
-                                        //gradle.build() //works
+                                        println('Etapa a Procesar : ' + _et)
                                         gradle."${_et.toLowerCase()}"()
                                     }
                                 } // fin if env.Tarea
