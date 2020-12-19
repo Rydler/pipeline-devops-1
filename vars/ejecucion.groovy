@@ -87,20 +87,7 @@ def call(){
 
                         echo "Tecnologia: ${params.TECNOLOGIA}" 
 
-                        //Invocar Archivo dependiendo el parametro de Entrada
-                        //Valido que si es vacio todos los procesos , de lo contrario solo los escogidos
-                        if(env.Tarea == ''){
-                            //"${params.TECNOLOGIA.toLowerCase()}".todos_los_pasos()
-                            gradle.build()
-                        }else{ // Ejecutar Cada Paso Previamente Validado como Existente
-                            etapas = env.Etapa.split(';');
-                            for( String _et : etapas )  {
-                                println('Etapa a Procesar : ' + _et)
-                                //"${params.TECNOLOGIA.toLowerCase()}"."${_et.toLowerCase()}"()
-                                "${params.TECNOLOGIA.toLowerCase()}"."${_et.toLowerCase()}"()
-                            }
-                        } // fin if env.Tarea
-                        /*
+                       
                         switch(params.TECNOLOGIA) {
                             case 'GRADLE':
                                 //Valido que si es vacio todos los procesos , de lo contrario solo los escogidos
@@ -128,7 +115,7 @@ def call(){
                                 } // fin if env.Tarea
                             break
                         }//fin switch
-                        */
+                        
                     } //fin script Pipeline
                 }// fin steps
             }//END Pipeline Stage
