@@ -103,7 +103,7 @@ def call(){
                                         sh 'echo hola'
                                         //sh 'gradle.build()'
                                         //gradle.build() //works
-                                        gradle."${_et}"()
+                                        gradle."${_et.toLowerCase()}"()
                                     }
                                 } // fin if env.Tarea
                               
