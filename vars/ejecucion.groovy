@@ -1,11 +1,12 @@
 def call(){
-    //Variables Globales de Stages Pipeline
-    String tec = ''
-    String stage = ''
     
     //Estructura de Pipeline Declarativo
     pipeline {
         agent any
+
+        //Variables Globales de Stages Pipeline
+        String tec = ''
+        String stage = ''
 
         parameters { 
             choice(name: 'TECNOLOGIA', choices: ['gradle', 'maven'], description: 'Elección Herramienta de automatización de construcción de código de software')
