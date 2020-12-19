@@ -29,7 +29,6 @@ def call(){
                                 def maven_pasos = ['BUILD', 'TEST','JAR_CODE', 'SONAR', 'INICIAR','TEST_REST'];
                                 echo "TEC : ${tec}" 
                                 //Reviso si los pasos ingresados corresponden a los existentes, si no envio error
-                                if (stage.le)
                                 resultado = stage.length()>0 ? true : false
                                 echo "Stage : ${stage}" 
                                 echo "Se ingresaron etapas ?: ${resultado}" 
