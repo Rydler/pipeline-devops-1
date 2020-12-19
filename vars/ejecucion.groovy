@@ -12,33 +12,20 @@ def call(){
 
         stages {
             stage('ValidacionParametros'){
-                script{
-                       try {
-                           println('Hola Mundo')
-                           println(params.TECNOLOGIA + params.STAGE)
-                           echo "Hello ${params.TECNOLOGIA}"
-                           echo "Hello ${params.STAGE}"
-                           /*
-                           def funciones   = new Funciones()
-                           stage('Todos'){
-                               println 'Inicio'
-                               println 'String 1: ' + param1
-                               println 'String 2: ' + param2
-                               gradle.call()
-                           }
-                           stage('1'){
-                               println 'Union de 2 Strings: ' + funciones.unirDosStrings(param1, param2)          
-                           }
-                           stage('2'){
-                               println 'Nombre obtenido desde Json: ' + funciones.mostrarNombre()
-                           }
-                           */
-                       } catch(Exception e) {
-                            println('Hola Mundo Error')
-                           error ('Ha ocurrido el siguiente error: ' + e)
-                       }
-                   }
-
+                steps{
+                    script{
+                            try {
+                                println('Hola Mundo')
+                                println(params.TECNOLOGIA + params.STAGE)
+                                echo "Hello ${params.TECNOLOGIA}"
+                                echo "Hello ${params.STAGE}"
+                            } catch(Exception e) {
+                                println('ERRRRRROOOOOR')
+                                error ('Ha ocurrido el siguiente error: ' + e)
+                            }
+                        }
+                    }//fin steps validacionParametros
+                }// fin stage validacionParametros
             }
             /*
             stage('Pipeline') {
