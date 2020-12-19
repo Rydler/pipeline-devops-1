@@ -16,29 +16,29 @@ def call(){
         //3. Validar que el STAGE ingresado ësta disponible dentro del pipeline y la herramienta a utilizar gradle o maven
         //4. Dar aviso si se ingreso un paso no existe
 
-
-        stages {
-            //Variables Globales de Stages Pipeline
-            def String tec
-            def String stage
-            
+         stages {  
+            script{
+                env.TAREA = ''
+                env.MensajeErrorSlack = ''
+                env.tec = ''
+                env.stage = ''
+            }
             stage('ValidacionParametros'){
                 steps{
                     script{
                             try {
                                 env.TAREA = 'ValidacionParametros'
-                                env.MensajeErrorSlack = ''
-                                tec = params.TECNOLOGIA.toUpperCase()
-                                stage = params.STAGE.toUpperCase()
+                                env.tec = params.TECNOLOGIA.toUpperCase()
+                                env.stage = params.STAGE.toUpperCase()
                                 String[] etapas
-                                def mensaje = 'dsadasdsd'
+
                                 //Defino Arreglo de Pasos Existentes por Tecnologia
                                 def gradle_pasos = ['BUILD', 'TEST', 'SONAR', 'INICIAR','TEST_REST','NEXUS']; 
                                 def maven_pasos = ['BUILD', 'TEST','JAR_CODE', 'SONAR', 'INICIAR','TEST_REST'];
 
                                 //Variables
-                                echo "TEC : ${tec}" 
-                                echo "Stage : ${stage}" 
+                                echo "TEC : ${env.tec}" 
+                                echo "Stage : ${env.stage}" 
                                
                                 //Reviso si los pasos ingresados corresponden a los existentes, si no envio error
                                 resultado = stage.length()>0 ? true : false                   
@@ -90,8 +90,8 @@ def call(){
                         env.TAREA = 'Pipeline'
                         env.MensajeErrorSlack = ''
 
-                        echo "TEC: ${tec}" 
-                        echo "Stage : ${stage}"
+                        echo "TEC: ${env.tec}" 
+                        echo "Stage : ${env.stage}"
                         //Invocar Archivo dependiendo el parametro de Entrada
                         /*
                          switch(tec) {
