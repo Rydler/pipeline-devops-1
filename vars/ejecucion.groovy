@@ -45,7 +45,8 @@ def call(){
                                         
                                         !(gradle_pasos.contains(_et)) {
                                             //Imprimo mensaje si no hay una etapa valida
-                                            error ('La etapa : ' + _et + ' no es valida, favor ingrese una existente, dentro de los valores son : BUILD\nTEST\nSONAR\nINICIAR\nTEST?REST\nNEXUS ')
+                                            println('etapas NO EXISTENTE : ' + _et)
+                                            //error ('La etapa : ' + _et + ' no es valida, favor ingrese una existente, dentro de los valores son : BUILD\nTEST\nSONAR\nINICIAR\nTEST?REST\nNEXUS ')
                                         }
                                         
                                     }
