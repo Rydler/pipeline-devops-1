@@ -36,14 +36,18 @@ def call(){
                                 resultado = stage.length()>0 ? true : false                   
                                 echo "Se ingresaron etapas ?: ${resultado}" 
 
-                                //Comprobe que se ingresaron etapas
+                                //Compruebo que se ingresaron etapas
                                 if(resultado){
                                     etapas = stage.split(';');
+                                    //Imprimo mensaje si no hay una etapa valida
+                                    !(gradle_pasos.contains(_et)) {
+                                        error ('La etapa : ' + _et + ' no es valida, favor ingrese una existente, dentro de los valores son : BUILD\nTEST\nSONAR\nINICIAR\nTEST?REST\nNEXUS ')
+                                    }
 
                                     switch(tec) {
                                         case 'gradle':
                                             for( String _et : etapas )  {
-                                                gradle_pasos.contains(_et) ? println('etapas : ' + _et) : error ('La etapa : ' + _et + ' no es valida, favor ingrese una existente, dentro de los valores son : BUILD\nTEST\nSONAR\nINICIAR\nTEST?REST\nNEXUS ')
+                                               println('etapas : ' + _et)
                                             }
                                         break
                                         case 'maven':
