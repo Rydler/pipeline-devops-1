@@ -49,7 +49,7 @@ def call(){
                                                 println('etapas : ' + _et)
                                                 existe_etapa = gradle_pasos.contains(_et); 
                                                 if(existe_etapa == false){
-                                                    env.MensajeErrorSlack = 'La etapa : ' + _et + ' no es valida, favor ingrese una existente, dentro de los valores son : BUILD\nTEST\nSONAR\nINICIAR\nTEST_REST\nNEXUS'
+                                                    env.MensajeErrorSlack = 'La etapa : ' + _et + ' no es valida, favor ingrese una dentro de estos parametos\n BUILD\nTEST\nSONAR\nINICIAR\nTEST_REST\nNEXUS'
                                                     error (env.MensajeErrorSlack)
                                                 }
                                             }
@@ -59,7 +59,7 @@ def call(){
                                                 println('etapas : ' + _et)
                                                 existe_etapa = maven_pasos.contains(_et); 
                                                 if(existe_etapa == false){
-                                                    env.MensajeErrorSlack = 'La etapa : ' + _et + ' no es valida, favor ingrese una existente, dentro de los valores son : BUILD\nTEST\nJAR_CODE\nSONAR\nINICIAR\nTEST_REST'
+                                                    env.MensajeErrorSlack = 'La etapa : ' + _et + ' no es valida, favor ingrese una dentro de estos parametos\n BUILD\nTEST\nJAR_CODE\nSONAR\nINICIAR\nTEST_REST'
                                                     error (env.MensajeErrorSlack)
                                                 }
                                             }
