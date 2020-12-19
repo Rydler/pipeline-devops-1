@@ -25,8 +25,8 @@ def call(){
                             }
                         }
                     }//fin steps validacionParametros
-                }// fin stage validacionParametros
-            }
+            }// fin stage validacionParametros
+            
             /*
             stage('Pipeline') {
                 //Estructura de Stages Maven y Gradle
