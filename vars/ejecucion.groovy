@@ -42,12 +42,15 @@ def call(){
                                     etapas = stage.split(';');
                                     for( String _et : etapas )  {
                                         println('etapas : ' + _et)
+                                        /*
                                         !(gradle_pasos.contains(_et)) {
                                             //Imprimo mensaje si no hay una etapa valida
                                             error ('La etapa : ' + _et + ' no es valida, favor ingrese una existente, dentro de los valores son : BUILD\nTEST\nSONAR\nINICIAR\nTEST?REST\nNEXUS ')
                                         }
+                                        */
                                     }
                                     //Paso la etapa de validar que son existentes para ejecutarse
+                                    /*
                                     switch(tec) {
                                         case 'gradle':
                                             for( String _et : etapas )  {
@@ -59,6 +62,7 @@ def call(){
                                         break
 
                                     }
+                                    */
                                 }else {
                                     //Ejecutar todos los pasos
                                     if(tec == 'gradle'){
