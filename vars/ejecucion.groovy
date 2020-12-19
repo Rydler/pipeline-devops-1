@@ -86,7 +86,7 @@ def call(){
                         String[] etapas
 
                         echo "Tecnologia: ${params.TECNOLOGIA}" 
-                        echo "Etapa : ${env.Etapa}"
+
                         //Invocar Archivo dependiendo el parametro de Entrada
                         switch(params.TECNOLOGIA) {
                             case 'GRADLE':
@@ -99,7 +99,9 @@ def call(){
                                     for( String _et : etapas )  {
                                         println('Etapa : ' + _et)
                                         println("gradle.${_et}()")
-                                        sh "gradle.${_et}()"
+                                        //sh "gradle.${_et}()"
+                                        sh 'echo hola'
+                                        sh 'gradle.build()'
                                     }
                                 } // fin if env.Tarea
                               
