@@ -17,17 +17,12 @@ def call(){
         //4. Dar aviso si se ingreso un paso no existe
 
          stages {  
-            script{
-                env.TAREA = ''
-                env.MensajeErrorSlack = ''
-                env.tec = ''
-                env.stage = ''
-            }
             stage('ValidacionParametros'){
                 steps{
                     script{
                             try {
                                 env.TAREA = 'ValidacionParametros'
+                                env.MensajeErrorSlack = ''
                                 env.tec = params.TECNOLOGIA.toUpperCase()
                                 env.stage = params.STAGE.toUpperCase()
                                 String[] etapas
