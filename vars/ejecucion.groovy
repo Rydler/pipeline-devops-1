@@ -5,7 +5,8 @@ def call(){
 
         parameters { 
             choice(name: 'TECNOLOGIA', choices: ['maven', 'gradle'], description: 'Elección de herramienta de empaquetamiento')
-            choice(name: 'STAGE', defaultValue: '', description: 'Elección de cual etapa Pipeline')
+
+            string(name: 'STAGE', defaultValue: '', description: 'Elección de cual etapa Pipeline')
         }
 
 
@@ -13,7 +14,10 @@ def call(){
             stage('ValidacionParametros'){
                 script{
                        try {
-                           println('Hola Mundo' + params.TECNOLOGIA + params.STAGE)
+                           println('Hola Mundo')
+                           println(params.TECNOLOGIA + params.STAGE)
+                           echo "Hello ${params.TECNOLOGIA}"
+                           echo "Hello ${params.STAGE}"
                            /*
                            def funciones   = new Funciones()
                            stage('Todos'){
