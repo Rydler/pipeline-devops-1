@@ -39,17 +39,35 @@ def call(){
                                 resultado = stage.length()>0 ? true : false                   
                                 echo "Se ingresaron etapas ?: ${resultado}" 
 
-                                //Compruebo que se ingresaron etapas
+                                //Compruebo que se ingresaron etapas y valido que sean todas validas para el siguiente Stage
                                 if(resultado){
                                     etapas = stage.split(';');
-                                    for( String _et : etapas )  {
-                                        println('etapas : ' + _et)
-                                        existe_etapa = gradle_pasos.contains(_et); 
-                                        if(existe_etapa == false){
-                                            env.MensajeErrorSlack = 'La etapa : ' + _et + ' no es valida, favor ingrese una existente, dentro de los valores son : BUILD\nTEST\nSONAR\nINICIAR\nTEST?REST\nNEXUS'
-                                            error ('La etapa : ' + _et + ' no es valida, favor ingrese una existente, dentro de los valores son : BUILD\nTEST\nSONAR\nINICIAR\nTEST?REST\nNEXUS ')
-                                        }
+
+                                    //Paso la etapa de validar que son existentes para ejecutarse
+                                    switch(tec) {
+                                        case 'gradle':
+                                            for( String _et : etapas )  {
+                                                println('etapas : ' + _et)
+                                                existe_etapa = gradle_pasos.contains(_et); 
+                                                if(existe_etapa == false){
+                                                    env.MensajeErrorSlack = 'La etapa : ' + _et + ' no es valida, favor ingrese una existente, dentro de los valores son : BUILD\nTEST\nSONAR\nINICIAR\nTEST_REST\nNEXUS'
+                                                    error (env.MensajeErrorSlack)
+                                                }
+                                            }
+                                        break
+                                        case 'maven':
+                                            for( String _et : etapas )  {
+                                                println('etapas : ' + _et)
+                                                existe_etapa = maven_pasos.contains(_et); 
+                                                if(existe_etapa == false){
+                                                    env.MensajeErrorSlack = 'La etapa : ' + _et + ' no es valida, favor ingrese una existente, dentro de los valores son : BUILD\nTEST\nJAR_CODE\nSONAR\nINICIAR\nTEST_REST'
+                                                    error (env.MensajeErrorSlack)
+                                                }
+                                            }
+                                        break
+
                                     }
+                                   
                                    
                                 }
                               
@@ -59,75 +77,62 @@ def call(){
                         }
                     }//fin steps validacionParametros
             }// fin stage validacionParametros
-            
-            /*
-             //Paso la etapa de validar que son existentes para ejecutarse
-                                    / *
-                                    switch(tec) {
+            stage('Pipeline') {
+                //Estructura de Stages Maven y Gradle
+                steps {
+                    script {
+
+                        env.TAREA = 'Pipeline'
+                        env.MensajeErrorSlack = ''
+
+                        echo "TEC: ${tec}" 
+                        echo "Stage : ${stage}"
+                        //Invocar Archivo dependiendo el parametro de Entrada
+                        /*
+                         switch(tec) {
                                         case 'gradle':
                                             for( String _et : etapas )  {
-                                               println('etapas : ' + _et)
+                                                println('etapas a Procesar : ' + _et)
+                                          
+                                              
                                             }
                                         break
                                         case 'maven':
-                                           echo 'FALTA CODIGO'
+                                            for( String _et : etapas )  {
+                                                println('etapas a Procesar : ' + _et)
+                                              
+                                            }
                                         break
 
-                                    }
-                                    * /
-            else {
-                                    //Ejecutar todos los pasos
-                                    if(tec == 'gradle'){
-                                        //gradle.todos_los_pasos()
-                                        echo 'GRADLE TODOS LOS PASOS !!!'
-                                    }else{
-                                        //maven.todos_los_pasos()
-                                        echo 'MAVEN TODOS LOS PASOS !!!'
-                                    }
-                                }
+                                    }*/
+                                    /*
+                        if(tec == 'gradle'){
+                            //gradle.todos_los_pasos()
+                            echo 'GRADLE TODOS LOS PASOS !!!'
+                        }else{
+                            //maven.todos_los_pasos()
+                            echo 'MAVEN TODOS LOS PASOS !!!'
+                        }
+                        */
+                    }
+                }
+            }//END Pipeline Stage
+            
+            /*
         
                                 //println('Hola Mundo') // y
                                 //println(params.TECNOLOGIA + params.STAGE) // y
                                 //echo "Hello ${params.TECNOLOGIA}" // y
                                 //echo "Hello ${params.STAGE}" // y
             */
-
-
-            /*
-            stage('Pipeline') {
-                //Estructura de Stages Maven y Gradle
-                steps {
-                    script {
-
-                        env.TAREA = ''
-                        
-                        //Invocar Archivo dependiendo el parametro de Entrada
-                        switch(params.TECNOLOGIA) {
-                            case 'maven':
-                                maven.call()
-                                result = "maven"
-                            break
-                            case 'gradle':
-                                //def externalMethod = load("gradle.groovy")
-                                //externalMethod.call()
-                                gradle.call()
-                                result = "gradle"
-                            break
-
-                        }
-                        echo "${result}"
-                    }
-                }
-            }//END Pipeline Stage
-            */
         }
         post {
 
             failure {
-                slackSend channel: 'U01DD0LGZLJ', color: 'danger', message: " [ Alexander Sanhueza ][ ${env.JOB_NAME} ][ ${params.TECNOLOGIA} ] Ejecución fallida en stage ${env.TAREA} [${env.MensajeErrorSlack}]. ", teamDomain: 'dipdevopsusach2020', tokenCredentialId: 'slack-diplomado-asc'
+                slackSend channel: 'U01DD0LGZLJ', color: 'danger', message: " [ Alexander Sanhueza ][ ${env.JOB_NAME} ][ ${params.TECNOLOGIA} ]\nEjecución fallida en stage ${env.TAREA}\n ${env.MensajeErrorSlack}. ", teamDomain: 'dipdevopsusach2020', tokenCredentialId: 'slack-diplomado-asc'
             }
             success {
-                slackSend channel: 'U01DD0LGZLJ', color: 'good', message: " [ Alexander Sanhueza ][ ${env.JOB_NAME} ][ ${params.TECNOLOGIA} ] Ejecucion Exitosa. ", teamDomain: 'dipdevopsusach2020', tokenCredentialId: 'slack-diplomado-asc'
+                slackSend channel: 'U01DD0LGZLJ', color: 'good', message: " [ Alexander Sanhueza ][ ${env.JOB_NAME} ][ ${params.TECNOLOGIA} ]\nEjecucion Exitosa. ", teamDomain: 'dipdevopsusach2020', tokenCredentialId: 'slack-diplomado-asc'
             }
         }//fin post
     }//fin pipeline {}
