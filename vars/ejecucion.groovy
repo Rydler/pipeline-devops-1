@@ -7,7 +7,7 @@ def call(){
         parameters { 
             choice(name: 'TECNOLOGIA', choices: ['gradle', 'maven'], description: 'Elección Herramienta de automatización de construcción de código de software')
 
-            string(name: 'STAGE', defaultValue: '', description: 'Elección de cual etapa elegir a procesar dentro del Pipeline')
+            string(name: 'STAGE_PIPELINE', defaultValue: '', description: 'Elección de cual etapa elegir a procesar dentro del Pipeline')
         }
         
         //lo que debe hacer
@@ -21,10 +21,10 @@ def call(){
                 steps{
                     script{
                             try {
-                                env.TAREA = 'ValidacionParametros'
+                                env.Tarea = 'ValidacionParametros'
                                 env.MensajeErrorSlack = ''
-                                env.tec = params.TECNOLOGIA.toUpperCase()
-                                env.stage = params.STAGE.toUpperCase()
+                                env.Tech = params.TECNOLOGIA.toUpperCase()
+                                env.Etapa = params.STAGE_PIPELINE.toUpperCase()
                                 String[] etapas
 
                                 //Defino Arreglo de Pasos Existentes por Tecnologia
@@ -32,19 +32,19 @@ def call(){
                                 def maven_pasos = ['BUILD', 'TEST','JAR_CODE', 'SONAR', 'INICIAR','TEST_REST'];
 
                                 //Variables
-                                echo "TEC : ${env.tec}" 
-                                echo "Stage : ${env.stage}" 
+                                echo "Tecnologia : ${env.Tech}" 
+                                echo "Etapa : ${env.Etapa}" 
                                
                                 //Reviso si los pasos ingresados corresponden a los existentes, si no envio error
-                                resultado = stage.length()>0 ? true : false                   
+                                resultado = env.Etapa.length()>0 ? true : false                   
                                 echo "Se ingresaron etapas ?: ${resultado}" 
 
                                 //Compruebo que se ingresaron etapas y valido que sean todas validas para el siguiente Stage
                                 if(resultado){
-                                    etapas = env.stage.split(';');
+                                    etapas = env.Etapa.split(';');
 
                                     //Paso la etapa de validar que son existentes para ejecutarse
-                                    switch(tec) {
+                                    switch(env.Tech) {
                                         case 'gradle':
                                             for( String _et : etapas )  {
                                                 println('etapas : ' + _et)
@@ -82,11 +82,11 @@ def call(){
                 steps {
                     script {
 
-                        env.TAREA = 'Pipeline'
+                        env.Tarea = 'Pipeline'
                         env.MensajeErrorSlack = ''
 
-                        echo "TEC: ${env.tec}" 
-                        echo "Stage : ${env.stage}"
+                        echo "Tecnologia: ${env.Tech}" 
+                        echo "Etapa : ${env.Etapa}"
                         //Invocar Archivo dependiendo el parametro de Entrada
                         /*
                          switch(env.tec) {
@@ -129,7 +129,7 @@ def call(){
         post {
 
             failure {
-                slackSend channel: 'U01DD0LGZLJ', color: 'danger', message: " [ Alexander Sanhueza ][ ${env.JOB_NAME} ][ ${params.TECNOLOGIA} ]\nEjecución fallida en stage ${env.TAREA}\n ${env.MensajeErrorSlack}. ", teamDomain: 'dipdevopsusach2020', tokenCredentialId: 'slack-diplomado-asc'
+                slackSend channel: 'U01DD0LGZLJ', color: 'danger', message: " [ Alexander Sanhueza ][ ${env.JOB_NAME} ][ ${params.TECNOLOGIA} ]\nEjecución fallida en stage ${env.Tarea}\n ${env.MensajeErrorSlack}. ", teamDomain: 'dipdevopsusach2020', tokenCredentialId: 'slack-diplomado-asc'
             }
             success {
                 slackSend channel: 'U01DD0LGZLJ', color: 'good', message: " [ Alexander Sanhueza ][ ${env.JOB_NAME} ][ ${params.TECNOLOGIA} ]\nEjecucion Exitosa. ", teamDomain: 'dipdevopsusach2020', tokenCredentialId: 'slack-diplomado-asc'
