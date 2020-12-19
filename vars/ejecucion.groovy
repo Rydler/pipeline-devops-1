@@ -76,7 +76,6 @@ def call(){
                         }
                     }//fin steps validacionParametros
             }// fin stage validacionParametros
-            /*
             stage('Pipeline') {
                 //Estructura de Stages Maven y Gradle
                 steps {
@@ -88,7 +87,7 @@ def call(){
                         echo "Tecnologia: ${params.TECNOLOGIA}" 
                         echo "Etapa : ${env.Etapa}"
                         //Invocar Archivo dependiendo el parametro de Entrada
-                        / *
+                        /*
                          switch(params.TECNOLOGIA) {
                                         case 'gradle':
                                             for( String _et : etapas )  {
@@ -112,11 +111,11 @@ def call(){
                             //maven.todos_los_pasos()
                             echo 'MAVEN TODOS LOS PASOS !!!'
                         }
-                        * /
+                        */
                     }
                 }
             }//END Pipeline Stage
-            */
+            
            
         }
         post {
