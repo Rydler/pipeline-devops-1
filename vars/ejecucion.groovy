@@ -19,7 +19,24 @@ def call(){
                             def user = env.BUILD_USER
                         }
                         */
+                        
+                         //Invocar Archivo dependiendo el parametro de Entrada
+                        switch(params.TECNOLOGIA) {
+                            case 'maven':
+                                maven.call()
+                                result = "maven"
+                            break
+                            case 'gradle':
+                                //def externalMethod = load("gradle.groovy")
+                                //externalMethod.call()
+                                gradle.call()
+                                result = "gradle"
+                            break
 
+                        }
+                        echo "${result}"
+                
+                        /*
                         //Invocar Archivo dependiendo el parametro de Entrada
                         switch(params.TECNOLOGIA) {
                             case 'maven':
@@ -28,13 +45,15 @@ def call(){
                                 result = "maven"
                             break
                             case 'gradle':
-                                def externalMethod = load("gradle.groovy")
-                                externalMethod.call()
+                                //def externalMethod = load("gradle.groovy")
+                                //externalMethod.call()
+                               
                                 result = "gradle"
                             break
 
                         }
                         echo "${result}"
+                        */
                     }
                 }
             }//END Pipeline Stage
