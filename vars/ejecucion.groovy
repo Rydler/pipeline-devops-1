@@ -5,7 +5,7 @@ def call(){
         agent any
 
         parameters { 
-            choice(name: 'TECNOLOGIA', choices: ['gradle', 'maven'], description: 'Elección Herramienta de automatización de construcción de código de software')
+            choice(name: 'TECNOLOGIA', choices: ['GRADLE', 'MAVEN'], description: 'Elección Herramienta de automatización de construcción de código de software')
 
             string(name: 'STAGE_PIPELINE', defaultValue: '', description: 'Elección de cual etapa elegir a procesar dentro del Pipeline')
         }
@@ -23,7 +23,6 @@ def call(){
                             try {
                                 env.Tarea = 'ValidacionParametros'
                                 env.MensajeErrorSlack = ''
-                                env.Tech = params.TECNOLOGIA.toUpperCase()
                                 env.Etapa = params.STAGE_PIPELINE.toUpperCase()
                                 String[] etapas
 
@@ -32,7 +31,7 @@ def call(){
                                 def maven_pasos = ['BUILD', 'TEST','JAR_CODE', 'SONAR', 'INICIAR','TEST_REST'];
 
                                 //Variables
-                                echo "Tecnologia : ${env.Tech}" 
+                                echo "Tecnologia : ${params.TECNOLOGIA}" 
                                 echo "Etapa : ${env.Etapa}" 
                                
                                 //Reviso si los pasos ingresados corresponden a los existentes, si no envio error
@@ -44,8 +43,8 @@ def call(){
                                     etapas = env.Etapa.split(';');
 
                                     //Paso la etapa de validar que son existentes para ejecutarse
-                                    switch(env.Tech) {
-                                        case 'gradle':
+                                    switch(params.TECNOLOGIA) {
+                                        case 'GRADLE':
                                             for( String _et : etapas )  {
                                                 println('etapas : ' + _et)
                                                 existe_etapa = gradle_pasos.contains(_et); 
@@ -55,7 +54,7 @@ def call(){
                                                 }
                                             }
                                         break
-                                        case 'maven':
+                                        case 'MAVEN':
                                             for( String _et : etapas )  {
                                                 println('etapas : ' + _et)
                                                 existe_etapa = maven_pasos.contains(_et); 
@@ -77,6 +76,7 @@ def call(){
                         }
                     }//fin steps validacionParametros
             }// fin stage validacionParametros
+            /*
             stage('Pipeline') {
                 //Estructura de Stages Maven y Gradle
                 steps {
@@ -85,11 +85,11 @@ def call(){
                         env.Tarea = 'Pipeline'
                         env.MensajeErrorSlack = ''
 
-                        echo "Tecnologia: ${env.Tech}" 
+                        echo "Tecnologia: ${params.TECNOLOGIA}" 
                         echo "Etapa : ${env.Etapa}"
                         //Invocar Archivo dependiendo el parametro de Entrada
-                        /*
-                         switch(env.tec) {
+                        / *
+                         switch(params.TECNOLOGIA) {
                                         case 'gradle':
                                             for( String _et : etapas )  {
                                                 println('etapas a Procesar : ' + _et)
@@ -104,27 +104,20 @@ def call(){
                                             }
                                         break
 
-                                    }*/
-                                    /*
-                        if(env.tec == 'gradle'){
+                                    }
+                        if(params.TECNOLOGIA == 'gradle'){
                             //gradle.todos_los_pasos()
                             echo 'GRADLE TODOS LOS PASOS !!!'
                         }else{
                             //maven.todos_los_pasos()
                             echo 'MAVEN TODOS LOS PASOS !!!'
                         }
-                        */
+                        * /
                     }
                 }
             }//END Pipeline Stage
-            
-            /*
-        
-                                //println('Hola Mundo') // y
-                                //println(params.TECNOLOGIA + params.STAGE) // y
-                                //echo "Hello ${params.TECNOLOGIA}" // y
-                                //echo "Hello ${params.STAGE}" // y
             */
+           
         }
         post {
 
