@@ -3,14 +3,17 @@ def call(){
     pipeline {
         agent any
 
-        parameters { choice(name: 'TECNOLOGIA', choices: ['maven', 'gradle'], description: 'Elección de herramienta de empaquetamiento') }
-        parameters { choice(name: 'STAGE', defaultValue: '', description: 'Elección de cual etapa Pipeline') }
+        parameters { 
+            choice(name: 'TECNOLOGIA', choices: ['maven', 'gradle'], description: 'Elección de herramienta de empaquetamiento'),
+            choice(name: 'STAGE', defaultValue: '', description: 'Elección de cual etapa Pipeline')
+        }
+
 
         stages {
             stage('ValidacionParametros'){
                 script{
                        try {
-                           println('Hola Mundo')
+                           println('Hola Mundo' + params.TECNOLOGIA + params.STAGE)
                            /*
                            def funciones   = new Funciones()
                            stage('Todos'){
