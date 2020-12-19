@@ -49,7 +49,7 @@ def build(){
 def test(){
     stage('Test'){
         env.TAREA = 'test'
-        sh 'gradle clean test' 
+        sh 'gradle test' 
         //sh 'echo test'
     } //end 
 }
