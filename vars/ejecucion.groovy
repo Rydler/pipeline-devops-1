@@ -97,7 +97,7 @@ def call(){
                             for( String _et : etapas )  {
                                 println('Etapa a Procesar : ' + _et)
                                 //"${params.TECNOLOGIA.toLowerCase()}"."${_et.toLowerCase()}"()
-                                gradle."${_et.toLowerCase()}"()
+                                "${params.TECNOLOGIA.toLowerCase()}.${_et.toLowerCase()}"()
                             }
                         } // fin if env.Tarea
                         /*
