@@ -88,28 +88,45 @@ def call(){
                         echo "Tecnologia: ${params.TECNOLOGIA}" 
 
                         //Invocar Archivo dependiendo el parametro de Entrada
+                        //Valido que si es vacio todos los procesos , de lo contrario solo los escogidos
+                        if(env.Tarea == ''){
+                            "${params.TECNOLOGIA.toLowerCase()}".todos_los_pasos()
+                        }else{ // Ejecutar Cada Paso Previamente Validado como Existente
+                            etapas = env.Etapa.split(';');
+                            for( String _et : etapas )  {
+                                println('Gradle Etapa a Procesar : ' + _et)
+                                "${params.TECNOLOGIA.toLowerCase()}"."${_et.toLowerCase()}"()
+                            }
+                        } // fin if env.Tarea
+                        /*
                         switch(params.TECNOLOGIA) {
                             case 'GRADLE':
                                 //Valido que si es vacio todos los procesos , de lo contrario solo los escogidos
                                 if(env.Tarea == ''){
-                                    //gradle.todos_los_pasos()
-                                    println('TODOS LOS PASOS')
+                                    gradle.todos_los_pasos()
                                 }else{ // Ejecutar Cada Paso Previamente Validado como Existente
                                     etapas = env.Etapa.split(';');
                                     for( String _et : etapas )  {
-                                        println('Etapa a Procesar : ' + _et)
+                                        println('Gradle Etapa a Procesar : ' + _et)
                                         gradle."${_et.toLowerCase()}"()
                                     }
                                 } // fin if env.Tarea
                               
                             break
                             case 'MAVEN':
-                                for( String _et : etapas )  {
-                                    println('etapas a Procesar : ' + _et)
-                                  
-                                }
+                                //Valido que si es vacio todos los procesos , de lo contrario solo los escogidos
+                                if(env.Tarea == ''){
+                                    maven.todos_los_pasos()
+                                }else{ // Ejecutar Cada Paso Previamente Validado como Existente
+                                    etapas = env.Etapa.split(';');
+                                    for( String _et : etapas )  {
+                                        println('Maven Etapa a Procesar : ' + _et)
+                                        maven."${_et.toLowerCase()}"()
+                                    }
+                                } // fin if env.Tarea
                             break
                         }//fin switch
+                        */
                     } //fin script Pipeline
                 }// fin steps
             }//END Pipeline Stage
