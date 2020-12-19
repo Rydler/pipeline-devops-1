@@ -1,4 +1,8 @@
 def call(){
+    //Variables Globales de Stages Pipeline
+    String tec = ''
+    String stage = ''
+    
     //Estructura de Pipeline Declarativo
     pipeline {
         agent any
@@ -23,8 +27,8 @@ def call(){
                             try {
                                 env.TAREA = 'ValidacionParametros'
                                 env.MensajeErrorSlack = ''
-                                String tec = params.TECNOLOGIA.toUpperCase()
-                                String stage = params.STAGE.toUpperCase()
+                                tec = params.TECNOLOGIA.toUpperCase()
+                                stage = params.STAGE.toUpperCase()
                                 String[] etapas
                                 def mensaje = 'dsadasdsd'
                                 //Defino Arreglo de Pasos Existentes por Tecnologia
