@@ -102,7 +102,8 @@ def call(){
                                         //sh "gradle.${_et}()"
                                         sh 'echo hola'
                                         //sh 'gradle.build()'
-                                        gradle.build()
+                                        //gradle.build() //works
+                                        gradle."${_et}"()
                                     }
                                 } // fin if env.Tarea
                               
