@@ -27,11 +27,15 @@ def call(){
                                 //Defino Arreglo de Pasos Existentes por Tecnologia
                                 def gradle_pasos = ['BUILD', 'TEST', 'SONAR', 'INICIAR','TEST_REST','NEXUS']; 
                                 def maven_pasos = ['BUILD', 'TEST','JAR_CODE', 'SONAR', 'INICIAR','TEST_REST'];
+
+                                //Variables
                                 echo "TEC : ${tec}" 
-                                //Reviso si los pasos ingresados corresponden a los existentes, si no envio error
-                                resultado = stage.length()>0 ? true : false
                                 echo "Stage : ${stage}" 
+                               
+                                //Reviso si los pasos ingresados corresponden a los existentes, si no envio error
+                                resultado = stage.length()>0 ? true : false                   
                                 echo "Se ingresaron etapas ?: ${resultado}" 
+
                                 //Comprobe que se ingresaron etapas
                                 if(resultado){
                                     etapas = stage.split(';');
@@ -47,7 +51,15 @@ def call(){
                                         break
 
                                     }
-      
+                                }else {
+                                    //Ejecutar todos los pasos
+                                    if(tec == 'gradle'){
+                                        //gradle.todos_los_pasos()
+                                        echo 'GRADLE TODOS LOS PASOS !!!'
+                                    }else{
+                                        //maven.todos_los_pasos()
+                                        echo 'MAVEN TODOS LOS PASOS !!!'
+                                    }
                                 }
                               
                                 //println('Hola Mundo') // y

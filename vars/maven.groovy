@@ -4,7 +4,7 @@
 	ejecucion.call()
 */
 
-def call(){
+def todos_los_pasos(){
   
   stage('Compilar') {
     env.TAREA = 'Compilar'
