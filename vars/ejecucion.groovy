@@ -62,6 +62,8 @@ def call(){
                         
                     }
                 }
+            }
+            stage('Pipeline 2'){
                 when { 
                     branch "develop"
                     //not  { 
