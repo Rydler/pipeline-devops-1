@@ -62,6 +62,14 @@ def call(){
                         
                     }
                 }
+                when { 
+                    not  { 
+                        anyOf { branch 'feature-*'; branch 'develop': branch 'release-v*' } 
+                    } 
+                }
+                steps {
+                    println 'Skipped full build.'
+                }
             }
         }
         post {
