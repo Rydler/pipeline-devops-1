@@ -19,7 +19,8 @@ def call(){
 
          stages {  
             stage('Pipeline'){
-                when { branch "feature-*" }
+                //when { branch "feature-*" }
+                when { branch "develop" }
                 steps {
                     script {
                         println 'Herramienta seleccionada : ' + params.TECNOLOGIA 
