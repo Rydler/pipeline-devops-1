@@ -19,46 +19,22 @@ def call(){
 
          stages {  
             stage('Branch CI'){
-                //when { branch "feature-*" } // 
-                when { branch "develop" }
+                when { branch "feature-*" }
+                //when { branch "develop" } // Para generar el Skipped 
                 steps {
                     script {
-                        println 'Herramienta seleccionada : ' + params.TECNOLOGIA 
-
-                        println(env.GIT_BRANCH)
-                        println(env.BRANCH_NAME)
-                    
-                        /*
-                        stage('Etapa de CI'){
-                            when { anyOf { branch 'feature-*'; branch 'develop' } }
-                            steps{
-                                sh 'CI'
-                            }
-                        }
-                        stage('Etapa de CD'){
-                            when {
-                                {
-                                    branch 'release-*'
-                                }
-                            }
-                            steps{
-                                 sh 'CD'
-                            }
-                        }
-                        */
+                        println 'Herramienta seleccionada : ' + params.TECNOLOGIA                         
                         
-                        /*
                         //Paso la etapa de validar que son existentes para ejecutarse
                         switch(params.TECNOLOGIA) {
                             case 'GRADLE':
-                               gradle "${params.STAGE_PIPELINE.toUpperCase()}"
+                               ci_gradle "${params.STAGE_PIPELINE.toUpperCase()}"
                             break
                             case 'MAVEN':
-                               maven "${params.STAGE_PIPELINE.toUpperCase()}"
+                               ci_maven "${params.STAGE_PIPELINE.toUpperCase()}"
                             break
 
                         }
-                        */
                         
                     }
                 }
@@ -66,8 +42,8 @@ def call(){
             stage('Skipped Branch CI/CD'){
                 when { 
                     not  { 
-                         //anyOf { branch 'feature-*'; branch 'develop'; branch 'release-v*' } // Este es cuando este funcionando todo
-                         anyOf { branch 'develop'; branch 'release-v*' } 
+                        anyOf { branch 'feature-*'; branch 'develop'; branch 'release-v*' } // Este es cuando este funcionando todo
+                        //anyOf { branch 'develop'; branch 'release-v*' } // Modo pruebas como ejecuto feature con el comentario anterior , entra acá
                     } 
                 }
                 steps {
