@@ -21,6 +21,9 @@ def call(){
                 steps{
                     script{
                             try {
+                                
+                                sh 'env'
+                                
                                 env.Tarea = 'ValidacionParametros'
                                 env.MensajeErrorSlack = ''
                                 env.Etapa = params.STAGE_PIPELINE.toUpperCase()
