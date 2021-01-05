@@ -7,7 +7,7 @@ interface POMXML {
 def call(String etapasEscogidas){
 
     //Defino Arreglo de Pasos Existentes por Tecnologia
-    def ci_gradle_pasos = ['BUILDANDTEST','SONAR'];
+    def ci_gradle_pasos = ['BUILDANDTEST','SONAR','INICIAR','TEST_REST','NEXUS'];
 
     env.Tarea = 'Gradle CI Pipeline'
     figlet env.Tarea
@@ -39,7 +39,7 @@ def buildandtest(){
         figlet env.Tarea
     }
     //sh 'gradle clean build' 
-    sh 'echo buildandtest'
+    sh 'env'
 }
 
 def sonar(){
@@ -82,7 +82,7 @@ def nexus(){
         env.Tarea = 'nexus'
         figlet env.Tarea
     }
-    nexusPublisher nexusInstanceId: 'nexus', nexusRepositoryId: 'test-nexus', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: 'jar', filePath: '/Users/kuroi/.jenkins/workspace/_multibranch_feature-dir-inicial/build/libs/DevOpsUsach2020-0.0.1.jar']], mavenCoordinate: [artifactId: 'DevOpsUsach2020', groupId: 'com.devopsusach2020', packaging: 'jar', version: '0.0.1']]]
+    nexusPublisher nexusInstanceId: 'nexus', nexusRepositoryId: 'ci-nexus', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: 'jar', filePath: '/Users/kuroi/.jenkins/workspace/_multibranch_feature-dir-inicial/build/libs/DevOpsUsach2020-0.0.1.jar']], mavenCoordinate: [artifactId: 'DevOpsUsach2020', groupId: 'com.devopsusach2020', packaging: 'jar', version: '0.0.1']]]
     //sh 'echo nexus'
 }
 
