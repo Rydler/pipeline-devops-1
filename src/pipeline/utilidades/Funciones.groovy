@@ -10,6 +10,7 @@ package pipeline.utilidades
 
     def validarEtapasValidas(String etapasEscogidas, ArrayList pipelineEtapas){
         def etapas = []
+        def etapasError = []
 
         if(etapasEscogidas?.trim().toUpperCase()){
 
@@ -17,8 +18,13 @@ package pipeline.utilidades
                 if(it in pipelineEtapas){
                     etapas.add(it)
                 }else {
-                    error "${it} no existe como Stage. Stages disponibles para ejecutar: ${pipelineEtapas}"
+                    etapasError.add(it)
                 }
+            }
+
+            //Existen Etapas con Error
+            if(etapasError.length() > 0){
+                error "${it} no existe como Stage. Stages disponibles para ejecutar: ${etapasError}"
             }
             println "Validación de stages correcta. Se ejecutarán los siguientes stages en orden : ${etapas}"
         }else{

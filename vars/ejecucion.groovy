@@ -23,6 +23,8 @@ def call(){
                     script {
                         println 'Herramienta seleccionada : ' + params.TECNOLOGIA 
 
+                        sh 'env'
+
                         //Paso la etapa de validar que son existentes para ejecutarse
                         switch(params.TECNOLOGIA) {
                             case 'GRADLE':

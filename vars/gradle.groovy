@@ -1,13 +1,13 @@
 import pipeline.utilidades.*
 
-def call(String chosenStages){
+def call(String etapasEscogidas){
     figlet 'gradle'
     
     //Defino Arreglo de Pasos Existentes por Tecnologia
     def gradle_pasos = ['BUILD', 'TEST', 'SONAR', 'INICIAR','TEST_REST','NEXUS'];
 
     def funciones   = new Funciones()
-    def etapas      = funciones.validarEtapasValidas(chosenStages, gradle_pasos)
+    def etapas      = funciones.validarEtapasValidas(etapasEscogidas, gradle_pasos)
 
     println(etapas)
    
