@@ -42,6 +42,7 @@ def sonar(){
     script{
         env.Tarea = 'Sonar'
         figlet env.Tarea
+        def funciones   = new Funciones()
         println(funciones.GroupIDProject)
     }
         
