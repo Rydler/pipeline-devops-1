@@ -1,4 +1,4 @@
-import pipeline.utilidades.*
+//import pipeline.utilidades.*
 
 def call(String chosenStages){
     figlet 'gradle'
@@ -8,7 +8,7 @@ def call(String chosenStages){
 
     //def tst = new Funciones()
     //return tst.sayHi()
-    def funciones   = new Funciones()
+    
    
 }
 
