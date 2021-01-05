@@ -25,8 +25,7 @@ def call(String etapasEscogidas){
 }
 
 def build(){
-    env.TAREA = 'build'
-    figlet env.Tarea
+    figlet 'build method'
     sh 'gradle clean build' 
     //sh 'echo build'
 }
