@@ -11,8 +11,8 @@ def call(String chosenStages){
     //Defino Arreglo de Pasos Existentes por Tecnologia
     def gradle_pasos = ['BUILD', 'TEST', 'SONAR', 'INICIAR','TEST_REST','NEXUS'];
 
-    def f = new Funciones()
-    println(f.aFunction())
+    //def f = new Funciones()
+    //println(f.aFunction())
 }
 
 def todos_los_pasos(){
