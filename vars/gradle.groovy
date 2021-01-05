@@ -8,7 +8,7 @@ def call(String chosenStages){
 
     //def tst = new Funciones()
     //return tst.sayHi()
-    //def f = new Funciones()
+    def f = new Funciones()
     //f.sayHi()
     //println(f.sayHello('Alex'))
 }
