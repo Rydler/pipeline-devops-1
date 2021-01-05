@@ -1,6 +1,6 @@
 package pipeline.utilidades
 
-class Funciones {
+public class Funciones {
     def sayHi() {
         echo "Hi from Funciones!"
     }

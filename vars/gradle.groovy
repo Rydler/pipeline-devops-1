@@ -6,11 +6,11 @@ def call(String chosenStages){
     //Defino Arreglo de Pasos Existentes por Tecnologia
     def gradle_pasos = ['BUILD', 'TEST', 'SONAR', 'INICIAR','TEST_REST','NEXUS'];
 
-    def tst = new pipeline.utilidades.Funciones()
-    return tst.sayHi()
-    //def f = new Funciones()
-    //println(f.sayHi())
-    //println(f.sayHello('Alex'))
+    //def tst = new Funciones()
+    //return tst.sayHi()
+    def f = new Funciones()
+    println(f.sayHi())
+    println(f.sayHello('Alex'))
 }
 
 def todos_los_pasos(){
