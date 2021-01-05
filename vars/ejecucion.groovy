@@ -24,6 +24,8 @@ def call(){
                         println 'Herramienta seleccionada : ' + params.TECNOLOGIA 
                         
                         sh 'env'
+
+                        println(env.GIT_BRANCH)
                         /*
                         //Paso la etapa de validar que son existentes para ejecutarse
                         switch(params.TECNOLOGIA) {
