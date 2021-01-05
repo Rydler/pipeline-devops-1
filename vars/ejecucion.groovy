@@ -19,7 +19,7 @@ def call(){
 
          stages {  
             stage('Branch CI'){
-                //when { branch "feature-*" }
+                //when { branch "feature-*" } // 
                 when { branch "develop" }
                 steps {
                     script {
@@ -66,7 +66,7 @@ def call(){
             stage('Skipped Branch CI/CD'){
                 when { 
                     not  { 
-                         //anyOf { branch 'feature-*'; branch 'develop'; branch 'release-v*' } 
+                         //anyOf { branch 'feature-*'; branch 'develop'; branch 'release-v*' } // Este es cuando este funcionando todo
                          anyOf { branch 'develop'; branch 'release-v*' } 
                     } 
                 }
