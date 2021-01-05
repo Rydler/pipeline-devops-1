@@ -3,7 +3,7 @@ import pipeline.utilidades.*
 def call(String etapasEscogidas){
 
     //Defino Arreglo de Pasos Existentes por Tecnologia
-    def ci_gradle_pasos = ['BUILDANDTEST'];
+    def ci_gradle_pasos = ['BUILDANDTEST','SONAR'];
 
     env.Tarea = 'Gradle CI Pipeline'
     figlet env.Tarea
@@ -35,29 +35,20 @@ def buildandtest(){
     //sh 'echo build'
 }
 
-def test(){
-    script{
-        env.Tarea = 'test'
-        figlet env.Tarea
-    }
-    sh 'gradle test' 
-    //sh 'echo test'
-}
-
 def sonar(){
     script{
-        env.Tarea = 'sonar'
+        env.Tarea = 'Sonar'
         figlet env.Tarea
     }
         
     //SonnarScanner
-    def scannerHome = tool 'sonar-scanner';
+    //def scannerHome = tool 'sonar-scanner';
     //Sonnar Server
-    withSonarQubeEnv('sonar'){
-        sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=ejemplo-gradle -Dsonar.java.binaries=build"
-    }
+    //withSonarQubeEnv('sonar'){
+        //sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=${repository}-${BRANCH_NAME}-${BUILD_NUMBER} -Dsonar.java.binaries=build"
+    //}
         
-    //sh 'echo sonar'
+    sh 'env'
 }
 def iniciar(){
     script{
