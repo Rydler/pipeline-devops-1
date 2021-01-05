@@ -13,6 +13,7 @@ def call(String etapasEscogidas){
 
     //Setear Variables Globales de Proyecto a Ejecutar
     funciones.obtenerValoresArchivoPOM('pom.xml')
+    println(funciones.GroupIDProject)
 
     etapas.each{
         stage(it){
@@ -42,7 +43,6 @@ def sonar(){
     script{
         env.Tarea = 'Sonar'
         figlet env.Tarea
-        println(funciones.GroupIDProject)
     }
         
     //SonnarScanner
