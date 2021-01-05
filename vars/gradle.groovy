@@ -6,8 +6,7 @@ def call(String etapasEscogidas){
     //Defino Arreglo de Pasos Existentes por Tecnologia
     def gradle_pasos = ['BUILD', 'TEST', 'SONAR', 'INICIAR','TEST_REST','NEXUS'];
 
-    env.Tarea = ''
-    env.MensajeErrorSlack = ''
+    env.Tarea = 'Gradle Pipeline'
 
     sh 'env'
 
