@@ -30,7 +30,7 @@ def call(){
                 }
             }
             stage('Branch CI'){
-                when { branch "feature-*" }
+                when { anyOf { branch 'feature-*'; branch 'develop' } }
                 //when { branch "develop" } // Para generar el Skipped 
                 steps {
                     script {
