@@ -6,12 +6,10 @@ def call(String chosenStages){
     //Defino Arreglo de Pasos Existentes por Tecnologia
     def gradle_pasos = ['BUILD', 'TEST', 'SONAR', 'INICIAR','TEST_REST','NEXUS'];
 
-    //def tst = new Funciones()
-    //return tst.sayHi()
     def funciones   = new Funciones()
+    def etapas      = funciones.validarEtapasValidas(chosenStages, gradle_pasos)
 
-    funciones.sayHi()
-    funciones.sayHello('Alex')
+    println(etapas)
    
 }
 
