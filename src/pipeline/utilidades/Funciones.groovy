@@ -23,7 +23,7 @@ package pipeline.utilidades
             }
 
             //Existen Etapas con Error
-            if(etapasError.length() > 0){
+            if(etapasError.size() > 0){
                 error "${it} no existe como Stage. Stages disponibles para ejecutar: ${etapasError}"
             }
             println "Validación de stages correcta. Se ejecutarán los siguientes stages en orden : ${etapas}"
