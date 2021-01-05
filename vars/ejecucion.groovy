@@ -22,7 +22,7 @@ def call(){
                 steps {
                     script {
                         println 'Herramienta seleccionada : ' + params.TECNOLOGIA 
-                        
+
                         //Paso la etapa de validar que son existentes para ejecutarse
                         switch(params.TECNOLOGIA) {
                             case 'GRADLE':
@@ -37,115 +37,6 @@ def call(){
                     }
                 }
             }
-            /*
-            stage('ValidacionParametros'){
-                steps{
-                    script{
-                            try {
-                                
-                                sh 'env'
-                                
-                                env.Tarea = 'ValidacionParametros'
-                                figlet env.Tarea
-                                env.MensajeErrorSlack = ''
-                                env.Etapa = params.STAGE_PIPELINE.toUpperCase()
-                                String[] etapas
-
-                                //Defino Arreglo de Pasos Existentes por Tecnologia
-                                def gradle_pasos = ['BUILD', 'TEST', 'SONAR', 'INICIAR','TEST_REST','NEXUS']; 
-                                def maven_pasos = ['BUILD', 'TEST','JAR_CODE', 'SONAR', 'INICIAR','TEST_REST'];
-
-                                //Variables
-                                echo "Tecnologia : ${params.TECNOLOGIA}" 
-                                echo "Etapa : ${env.Etapa}" 
-                               
-                                //Reviso si los pasos ingresados corresponden a los existentes, si no envio error
-                                resultado = env.Etapa.length()>0 ? true : false                   
-                                echo "Se ingresaron etapas ?: ${resultado}" 
-
-                                //Compruebo que se ingresaron etapas y valido que sean todas validas para el siguiente Stage
-                                if(resultado){
-                                    etapas = env.Etapa.split(';');
-
-                                    //Paso la etapa de validar que son existentes para ejecutarse
-                                    switch(params.TECNOLOGIA) {
-                                        case 'GRADLE':
-                                            for( String _et : etapas )  {
-                                                println('etapas : ' + _et)
-                                                existe_etapa = gradle_pasos.contains(_et); 
-                                                if(existe_etapa == false){
-                                                    env.MensajeErrorSlack = 'La etapa : ' + _et + ' no es valida, favor ingrese una dentro de estos parametos\n BUILD\nTEST\nSONAR\nINICIAR\nTEST_REST\nNEXUS'
-                                                    error (env.MensajeErrorSlack)
-                                                }
-                                            }
-                                        break
-                                        case 'MAVEN':
-                                            for( String _et : etapas )  {
-                                                println('etapas : ' + _et)
-                                                existe_etapa = maven_pasos.contains(_et); 
-                                                if(existe_etapa == false){
-                                                    env.MensajeErrorSlack = 'La etapa : ' + _et + ' no es valida, favor ingrese una dentro de estos parametos\n BUILD\nTEST\nJAR_CODE\nSONAR\nINICIAR\nTEST_REST'
-                                                    error (env.MensajeErrorSlack)
-                                                }
-                                            }
-                                        break
-
-                                    }
-                                   
-                                   
-                                }
-                              
-                            } catch(Exception e) {
-                                error ('Ha ocurrido un error en ValidacionParametros: ' + e)
-                            }
-                        }
-                    }//fin steps validacionParametros
-            }// fin stage validacionParametros
-            stage('Pipeline') {
-                //Estructura de Stages Maven y Gradle
-                steps {
-                    script {
-
-                        env.Tarea = 'Pipeline'
-                        env.MensajeErrorSlack = ''
-                        String[] etapas
-    
-                        switch(params.TECNOLOGIA) {
-                            case 'GRADLE':
-                                //Valido que si es vacio todos los procesos , de lo contrario solo los escogidos
-                                if(env.Etapa.equals('')){
-                                    println('Entre aca')
-                                    gradle.todos_los_pasos()
-                                }else{ // Ejecutar Cada Paso Previamente Validado como Existente
-                                    etapas = env.Etapa.split(';');
-                                    for( String _et : etapas )  {
-                                        println('Gradle Etapa a Procesar : ' + _et)
-                                        gradle."${_et.toLowerCase()}"()
-                                    }
-                                } // fin if env.Tarea
-                              
-                            break
-                            case 'MAVEN':
-                                //Valido que si es vacio todos los procesos , de lo contrario solo los escogidos
-                                if(env.Etapa.equals('')){
-                                    maven.todos_los_pasos()
-                                }else{ // Ejecutar Cada Paso Previamente Validado como Existente
-                                    etapas = env.Etapa.split(';');
-                                    for( String _et : etapas )  {
-                                        println('Maven Etapa a Procesar : ' + _et)
-                                        maven."${_et.toLowerCase()}"()
-                                    }
-                                } // fin if env.Tarea
-                            break
-                        }//fin switch
-                        
-                        
-                    } //fin script Pipeline
-                }// fin steps
-            }//END Pipeline Stage
-            */
-            
-           
         }
         post {
 
