@@ -1,9 +1,5 @@
 import pipeline.utilidades.*
 
-interface POMXML {                                         
-    void artefacto(String name)                                 
-}
-
 def call(String etapasEscogidas){
 
     //Defino Arreglo de Pasos Existentes por Tecnologia
@@ -81,8 +77,7 @@ def nexus(){
     script{
         env.Tarea = 'nexus'
         figlet env.Tarea
-
-        println("${WORKSPACE}/build/libs/${env.ProyectoArtefactoID}-${env.ProyectoVersion}.jar")
+        //println("${WORKSPACE}/build/libs/${env.ProyectoArtefactoID}-${env.ProyectoVersion}.jar")
     }
     nexusPublisher nexusInstanceId: 'nexus', nexusRepositoryId: 'ci-nexus', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: 'jar', filePath: "${WORKSPACE}/build/libs/${env.ProyectoArtefactoID}-${env.ProyectoVersion}.jar"]], mavenCoordinate: [artifactId: "${env.ProyectoArtefactoID}", groupId: "${env.ProyectoGrupoID}", packaging: 'jar', version: "${env.ProyectoVersion}"]]]
     //sh 'echo nexus'

@@ -35,7 +35,8 @@ def call(){
                 steps {
                     script {
                         println 'Herramienta seleccionada : ' + params.TECNOLOGIA          
-                        
+                        figlet params.TECNOLOGIA
+
                         //Paso la etapa de validar que son existentes para ejecutarse
                         
                         switch(params.TECNOLOGIA) {
@@ -43,7 +44,31 @@ def call(){
                                ci_gradle "${params.STAGE_PIPELINE.toUpperCase()}"
                             break
                             case 'MAVEN':
-                               ci_maven "${params.STAGE_PIPELINE.toUpperCase()}"
+                               //ci_maven "${params.STAGE_PIPELINE.toUpperCase()}"
+                               sh 'No Soportado Aun.'
+                            break
+                        }
+                        
+                        
+                    }
+                }
+            }
+            stage('Branch CD'){
+                when { branch "release-v*" }
+                steps {
+                    script {
+                        println 'Herramienta seleccionada : ' + params.TECNOLOGIA   
+                        figlet params.TECNOLOGIA       
+                        
+                        //Paso la etapa de validar que son existentes para ejecutarse
+                        
+                        switch(params.TECNOLOGIA) {
+                            case 'GRADLE':
+                               cd_gradle "${params.STAGE_PIPELINE.toUpperCase()}"
+                            break
+                            case 'MAVEN':
+                               //cd_maven "${params.STAGE_PIPELINE.toUpperCase()}"
+                               sh 'No Soportado Aun.'
                             break
                         }
                         
