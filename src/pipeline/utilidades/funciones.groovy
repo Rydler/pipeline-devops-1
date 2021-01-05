@@ -1,6 +1,6 @@
 package pipeline.utilidades
 
-class Funciones {
+
     def sayHi() {
         echo "Hi from Funciones!"
     }
@@ -8,4 +8,5 @@ class Funciones {
     def sayHello(str) {
         echo "Hello ${str}"
     }
-}
+
+return this;
