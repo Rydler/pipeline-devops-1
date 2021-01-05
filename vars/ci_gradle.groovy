@@ -15,9 +15,8 @@ def call(String etapasEscogidas){
     def funciones   = new Funciones()
     def etapas      = funciones.validarEtapasValidas(etapasEscogidas, ci_gradle_pasos)
 
-    //Setear Variables Globales de Proyecto a Ejecutar
+    //Setear Variables ENV de Proyecto a Ejecutar
     funciones.obtenerValoresArchivoPOM('pom.xml')
-    println(funciones.GroupIDProject)
 
     etapas.each{
         stage(it){
