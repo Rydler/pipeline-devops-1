@@ -34,16 +34,10 @@ def call(){
                 //when { branch "develop" } // Para generar el Skipped 
                 steps {
                     script {
-                        println 'Herramienta seleccionada : ' + params.TECNOLOGIA        
-
-                        def funciones   = new pipeline.utilidades.Funciones()
-                        funciones.obtenerValoresArchivoPOM('pom.xml')
-
-                        println(funciones.GroupID)
-                        
+                        println 'Herramienta seleccionada : ' + params.TECNOLOGIA          
                         
                         //Paso la etapa de validar que son existentes para ejecutarse
-                        /*
+                        
                         switch(params.TECNOLOGIA) {
                             case 'GRADLE':
                                ci_gradle "${params.STAGE_PIPELINE.toUpperCase()}"
@@ -52,7 +46,7 @@ def call(){
                                ci_maven "${params.STAGE_PIPELINE.toUpperCase()}"
                             break
                         }
-                        */
+                        
                         
                     }
                 }

@@ -1,6 +1,8 @@
 package pipeline.utilidades
 
-    public static final String GroupID
+    public static final String GroupIDProject
+    public static final String ArtifactIDProject
+    public static final String VersionProject
 
     def sayHi() {
         echo "Hi from Funciones!"
@@ -48,7 +50,9 @@ package pipeline.utilidades
         gavMap['artifactId'] =  pom['artifactId'].text().trim()
         gavMap['version'] =  pom['version'].text().trim()
 
-        GroupID = 'HOLA POS'
+        GroupIDProject = gavMap['groupId']
+        ArtifactIDProject = gavMap['artifactId']
+        VersionProject = gavMap['version']
     }
 
 return this;

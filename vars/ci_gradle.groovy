@@ -11,6 +11,9 @@ def call(String etapasEscogidas){
     def funciones   = new Funciones()
     def etapas      = funciones.validarEtapasValidas(etapasEscogidas, ci_gradle_pasos)
 
+    //Setear Variables Globales de Proyecto a Ejecutar
+    funciones.obtenerValoresArchivoPOM('pom.xml')
+
     etapas.each{
         stage(it){
             try{
@@ -39,6 +42,7 @@ def sonar(){
     script{
         env.Tarea = 'Sonar'
         figlet env.Tarea
+        println(funciones.GroupIDProject)
     }
         
     //SonnarScanner
@@ -47,8 +51,8 @@ def sonar(){
     //withSonarQubeEnv('sonar'){
         //sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=${repository}-${BRANCH_NAME}-${BUILD_NUMBER} -Dsonar.java.binaries=build"
     //}
-        
-    sh 'env'
+   
+    sh 'echo Hola Sonar'
 }
 def iniciar(){
     script{
