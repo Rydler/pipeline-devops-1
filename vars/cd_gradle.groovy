@@ -33,7 +33,7 @@ def downloadnexus(){
     script{
         env.Tarea = 'DownloadNexus'
         figlet env.Tarea
-        println(${env.ProyectoGrupoID.replace('.','/')})
+        //println(${env.ProyectoGrupoID.replace('.','/')})
     }
     //sh  "curl -X GET -u admin:admin http://localhost:8081/repository/ci-nexus/${env.ProyectoGrupoID.replace()}/DevOpsUsach2020/0.0.1/DevOpsUsach2020-0.0.1.jar -O"
     sh 'env'
