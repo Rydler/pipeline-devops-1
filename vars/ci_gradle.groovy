@@ -3,13 +3,13 @@ import pipeline.utilidades.*
 def call(String etapasEscogidas){
 
     //Defino Arreglo de Pasos Existentes por Tecnologia
-    def gradle_pasos = ['BUILD', 'TEST', 'SONAR', 'INICIAR','TEST_REST','NEXUS'];
+    def ci_gradle_pasos = ['BUILDANDTEST'];
 
     env.Tarea = 'Gradle CI Pipeline'
     figlet env.Tarea
 
     def funciones   = new Funciones()
-    def etapas      = funciones.validarEtapasValidas(etapasEscogidas, gradle_pasos)
+    def etapas      = funciones.validarEtapasValidas(etapasEscogidas, ci_gradle_pasos)
 
     etapas.each{
         stage(it){
@@ -26,9 +26,9 @@ def call(String etapasEscogidas){
 }
 
 
-def build(){
+def buildandtest(){
     script{
-        env.Tarea = 'build'
+        env.Tarea = 'BuildAndTest'
         figlet env.Tarea
     }
     sh 'gradle clean build' 
