@@ -1,6 +1,5 @@
 package pipeline.utilidades
 
-
     def sayHi() {
         echo "Hi from Funciones!"
     }

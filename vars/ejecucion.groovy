@@ -1,4 +1,4 @@
-import pipeline.utilidades.*
+
 def call(){
     
     //Estructura de Pipeline Declarativo
@@ -22,8 +22,6 @@ def call(){
                 steps {
                     script {
                         println 'Herramienta seleccionada : ' + params.TECNOLOGIA 
-
-                        def funciones   = new Funciones()
 
                         //Paso la etapa de validar que son existentes para ejecutarse
                         switch(params.TECNOLOGIA) {
