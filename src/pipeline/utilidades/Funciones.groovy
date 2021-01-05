@@ -1,9 +1,5 @@
 package pipeline.utilidades
 
-    public static final String GroupIDProject
-    public static final String ArtifactIDProject
-    public static final String VersionProject
-
     def sayHi() {
         echo "Hi from Funciones!"
     }
@@ -45,16 +41,14 @@ package pipeline.utilidades
     def obtenerValoresArchivoPOM(String nombreArchivoPom){
         def pomFile = readFile(nombreArchivoPom)
         def pom = new XmlParser().parseText(pomFile)
-        def gavMap = [:]
-        gavMap['groupId'] =  pom['groupId'].text().trim()
-        gavMap['artifactId'] =  pom['artifactId'].text().trim()
-        gavMap['version'] =  pom['version'].text().trim()
+        //def gavMap = [:]
+        //gavMap['groupId'] =  pom['groupId'].text().trim()
+        //gavMap['artifactId'] =  pom['artifactId'].text().trim()
+        //gavMap['version'] =  pom['version'].text().trim()
 
-        GroupIDProject = gavMap['groupId']
-        ArtifactIDProject = gavMap['artifactId']
-        VersionProject = gavMap['version']
-
-        env.ProyectoGrupoID = pom['groupId'].text().trim()
+        env.ProyectoGrupoID     = pom['groupId'].text().trim()
+        env.ProyectoArtefactoID =  pom['artifactId'].text().trim()
+        env.ProyectoVersion     =  pom['version'].text().trim()
     }
 
 return this;

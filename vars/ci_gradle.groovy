@@ -47,7 +47,7 @@ def sonar(){
     script{
         env.Tarea = 'Sonar'
         figlet env.Tarea
-        println(env.ProyectoGrupoID)
+        println(env.ProyectoGrupoID + '' + ProyectoArtefactoID + '' + ProyectoVersion)
     }
         
     //SonnarScanner
