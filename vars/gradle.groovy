@@ -15,8 +15,6 @@ def call(String etapasEscogidas){
         stage(it){
             try{
                 //Llamado dinamico
-                env.TAREA = ${it.toLowerCase()}
-                figlet env.Tarea
                 "${it.toLowerCase()}"()
             }catch(Exception e) {
                 error "Stage ${it} tiene problemas : ${e}"
@@ -27,6 +25,8 @@ def call(String etapasEscogidas){
 }
 
 def build(){
+    env.TAREA = 'build'
+    figlet env.Tarea
     sh 'gradle clean build' 
     //sh 'echo build'
 }
