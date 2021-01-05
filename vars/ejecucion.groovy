@@ -26,6 +26,32 @@ def call(){
                         sh 'env'
 
                         println(env.GIT_BRANCH)
+
+                        stage('Etapa de CI'){
+                            when { anyOf { branch 'main'; branch 'develop' } }
+                            steps{
+                                sh 'CI'
+                            }
+                        }
+                        /*
+                        stage('Etapa de CI'){
+                            when { anyOf { branch 'feature-*'; branch 'develop' } }
+                            steps{
+                                sh 'CI'
+                            }
+                        }
+                        stage('Etapa de CD'){
+                            when {
+                                {
+                                    branch 'release-*'
+                                }
+                            }
+                            steps{
+                                 sh 'CD'
+                            }
+                        }
+                        */
+                        
                         /*
                         //Paso la etapa de validar que son existentes para ejecutarse
                         switch(params.TECNOLOGIA) {
