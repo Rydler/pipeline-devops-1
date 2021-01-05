@@ -51,11 +51,11 @@ def sonar(){
     //SonnarScanner
     def scannerHome = tool 'sonar-scanner';
     //Sonnar Server
-    //withSonarQubeEnv('sonar'){
-        //sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=${env.ProyectoArtefactoID}-${BRANCH_NAME}-${BUILD_NUMBER} -Dsonar.java.binaries=build"
-    //}
+    withSonarQubeEnv('sonar'){
+        sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=${env.ProyectoArtefactoID}-${GIT_BRANCH}-${env.ProyectoVersion} -Dsonar.java.binaries=build"
+    }
    
-    sh 'env'
+    //sh 'env'
 }
 def iniciar(){
     script{
