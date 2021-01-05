@@ -15,7 +15,7 @@ def call(String etapasEscogidas){
         stage(it){
             try{
                 //Llamado dinamico
-                env.TAREA = it
+                env.TAREA = ${it.toLowerCase()}
                 figlet env.Tarea
                 "${it.toLowerCase()}"()
             }catch(Exception e) {
