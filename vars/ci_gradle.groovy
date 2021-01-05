@@ -82,7 +82,7 @@ def nexus(){
         env.Tarea = 'nexus'
         figlet env.Tarea
 
-        println("${WORKSPACE}"'/build/libs/'"${env.ProyectoArtefactoID}"'-'"${env.ProyectoVersion}"'.jar')
+        println("${WORKSPACE}/build/libs/${env.ProyectoArtefactoID}-${env.ProyectoVersion}.jar")
     }
     //nexusPublisher nexusInstanceId: 'nexus', nexusRepositoryId: 'ci-nexus', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: 'jar', filePath: "${WORKSPACE}"'/build/libs/'${env.ProyectoArtefactoID}'-'${env.ProyectoVersion}'.jar']], mavenCoordinate: [artifactId: env.ProyectoArtefactoID, groupId: env.ProyectoGrupoID, packaging: 'jar', version: ${env.ProyectoVersion}]]]
     //nexusPublisher nexusInstanceId: 'nexus', nexusRepositoryId: 'test-nexus', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: 'jar', filePath: "${WORKSPACE}"'/build/libs/'"${env.ProyectoArtefactoID}"'-'"${env.ProyectoVersion}"'.jar']], mavenCoordinate: [artifactId: 'DevOpsUsach2020', groupId: 'com.devopsusach2020', packaging: 'jar', version: '0.0.1']]]
