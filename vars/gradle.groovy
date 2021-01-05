@@ -17,7 +17,7 @@ def call(String etapasEscogidas){
                 //Llamado dinamico
                 "${it.toLowerCase()}"()
             }catch(Exception e) {
-                env.MensajeErrorSlack = "Stage ${it} tiene problemas : ${e}"
+                env.MensajeErrorSlack = "Stage ${it.toLowerCase()} tiene problemas : ${e}"
                 error env.MensajeErrorSlack
             }
         }
@@ -27,10 +27,9 @@ def call(String etapasEscogidas){
 
 def build(){
     script{
-        env.Tarea = 'build!!!!'
+        env.Tarea = 'build'
         figlet env.Tarea
     }
-    figlet 'build method'
     sh 'gradle clean build' 
     //sh 'echo build'
 }
