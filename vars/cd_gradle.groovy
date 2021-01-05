@@ -64,7 +64,7 @@ def nexusupload(){
         env.Tarea = 'NexusUpload'
         figlet env.Tarea
     }
-   nexusPublisher nexusInstanceId: 'nexus', nexusRepositoryId: 'cd-nexus', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: 'jar', filePath: "${WORKSPACE}/build/libs/${env.ProyectoArtefactoID}-${env.ProyectoVersion}.jar"]], mavenCoordinate: [artifactId: "${env.ProyectoArtefactoID}", groupId: "${env.ProyectoGrupoID}", packaging: 'jar', version: "${env.ProyectoVersion}"]]]
+   nexusPublisher nexusInstanceId: 'nexus', nexusRepositoryId: 'cd-nexus', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: 'jar', filePath: "${WORKSPACE}/${env.ProyectoArtefactoID}-${env.ProyectoVersion}.jar"]], mavenCoordinate: [artifactId: "${env.ProyectoArtefactoID}", groupId: "${env.ProyectoGrupoID}", packaging: 'jar', version: "${env.ProyectoVersion}"]]]
    //sh 'echo nexusUpload'
 }
 
