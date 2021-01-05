@@ -1,4 +1,4 @@
-import pipeline.utilidades.Funciones
+import pipeline.utilidades.*
 
 def call(String chosenStages){
     figlet 'gradle'
