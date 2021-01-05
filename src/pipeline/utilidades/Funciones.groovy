@@ -1,5 +1,7 @@
 package pipeline.utilidades
 
+    public static final String GroupID
+
     def sayHi() {
         echo "Hi from Funciones!"
     }
@@ -38,8 +40,13 @@ package pipeline.utilidades
 
     }
 
-    //def obtenerValoresArchivoPOM(){
-        
-    //}
+    def obtenerValoresArchivoPOM(String nombreArchivoPom){
+        def pomFile = readFile(nombreArchivoPom)
+        def pom = new XmlParser().parseText(pomFile)
+        def gavMap = [:]
+        gavMap['groupId'] =  pom['groupId'].text().trim()
+        gavMap['artifactId'] =  pom['artifactId'].text().trim()
+        gavMap['version'] =  pom['version'].text().trim()
+    }
 
 return this;

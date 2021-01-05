@@ -36,16 +36,8 @@ def call(){
                     script {
                         println 'Herramienta seleccionada : ' + params.TECNOLOGIA        
 
-                        def pomFile = readFile('pom.xml')
-                        def pom = new XmlParser().parseText(pomFile)
-                        def gavMap = [:]
-                        gavMap['groupId'] =  pom['groupId'].text().trim()
-                        gavMap['artifactId'] =  pom['artifactId'].text().trim()
-                        gavMap['version'] =  pom['version'].text().trim()           
-
-                        println(gavMap['groupId'])   
-                        println(gavMap['artifactId'])  
-                        println(gavMap['version'])  
+                        def funciones   = new pipeline.utilidades.Funciones()
+                        
                         
                         //Paso la etapa de validar que son existentes para ejecutarse
                         /*
