@@ -25,6 +25,7 @@ def call(){
                                 sh 'env'
                                 
                                 env.Tarea = 'ValidacionParametros'
+                                figlet env.Tarea
                                 env.MensajeErrorSlack = ''
                                 env.Etapa = params.STAGE_PIPELINE.toUpperCase()
                                 String[] etapas
