@@ -38,8 +38,8 @@ def buildandtest(){
         env.Tarea = 'BuildAndTest'
         figlet env.Tarea
     }
-    //sh 'gradle clean build' 
-    sh 'env'
+    sh 'gradle clean build' 
+    //sh 'env'
 }
 
 def sonar(){
@@ -82,7 +82,7 @@ def nexus(){
         env.Tarea = 'nexus'
         figlet env.Tarea
     }
-    nexusPublisher nexusInstanceId: 'nexus', nexusRepositoryId: 'ci-nexus', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: 'jar', filePath: '/Users/kuroi/.jenkins/workspace/_multibranch_feature-dir-inicial/build/libs/DevOpsUsach2020-0.0.1.jar']], mavenCoordinate: [artifactId: 'DevOpsUsach2020', groupId: 'com.devopsusach2020', packaging: 'jar', version: '0.0.1']]]
+    nexusPublisher nexusInstanceId: 'nexus', nexusRepositoryId: 'ci-nexus', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: 'jar', filePath: ${WORKSPACE}'/build/libs/'${env.ProyectoArtefactoID}'-'${env.ProyectoVersion}'.jar']], mavenCoordinate: [artifactId: env.ProyectoArtefactoID, groupId: env.ProyectoGrupoID, packaging: 'jar', version: ${env.ProyectoVersion}]]]
     //sh 'echo nexus'
 }
 
