@@ -1,6 +1,6 @@
 import pipeline.utilidades.*
 
-def call(String etapasEscogidas, String esCIoCD){
+def call(String etapasEscogidas){
 
     //Defino Arreglo de Pasos Existentes por Tecnologia en CI
     def ci_gradle_pasos = ['HOLA'];
