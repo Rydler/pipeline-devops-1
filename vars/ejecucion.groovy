@@ -27,19 +27,6 @@ def call(){
 
                         println(env.GIT_BRANCH)
                          println(env.BRANCH_NAME)
-
-                        
-                        when {
-                            branch 'feature-*'
-                        }    
-                        steps{
-                            script{
-
-                                echo "NOMBRE RAMA: ${BRANCH_NAME}"
-                                // INTEGRACION CONTINUA
-                                sh 'CI CALL'
-                            }
-                        }
                     
                         /*
                         stage('Etapa de CI'){
@@ -73,6 +60,19 @@ def call(){
                         }
                         */
                         
+                    }
+                }
+            }
+            stage('Branch Feature') {
+                when {
+                    branch 'feature-*'
+                }    
+                steps{
+                    script{
+
+                        echo "NOMBRE RAMA: ${BRANCH_NAME}"
+                        // INTEGRACION CONTINUA
+                        sh 'Hola Feature' 
                     }
                 }
             }
