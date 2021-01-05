@@ -64,7 +64,7 @@ def call(){
                 }
                 when { 
                     not  { 
-                        anyOf { branch 'feature-*'; branch 'develop': branch 'release-v*' } 
+                        anyOf { branch 'feature-*'; branch 'develop'; branch 'release-v*' } 
                     } 
                 }
                 steps {
