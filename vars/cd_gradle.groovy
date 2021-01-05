@@ -35,9 +35,27 @@ def downloadnexus(){
         figlet env.Tarea
     }
     sh  "curl -X GET -u admin:admin http://localhost:8081/repository/ci-nexus/" + env.ProyectoGrupoID.replace('.','/') + "/${env.ProyectoArtefactoID}/${env.ProyectoVersion}/${env.ProyectoArtefactoID}-${env.ProyectoVersion}.jar -O"
-    sh 'pwd'
-    sh 'ls -ltr'
-    //sh 'echo hola'
+    //EN el Log Running on Jenkins  in XXX , para saber la ruta
+    //sh 'echo DownloadNexus'
+}
+
+def iniciardownloadjar(){
+    script{
+        env.Tarea = 'IniciarDownloadJar'
+        figlet env.Tarea
+    }
+    sh "nohup java -jar ${env.ProyectoArtefactoID}-${env.ProyectoVersion}.jar & >/dev/null"
+    sh "sleep 20"
+}
+
+def test_rest(){
+    script{
+        env.Tarea = 'test_rest'
+        figlet env.Tarea
+    }
+    sleep 20
+    sh "curl -X GET 'http://localhost:8082/rest/mscovid/test?msg=testing'"
+    //sh 'echo rest'
 }
 
 
