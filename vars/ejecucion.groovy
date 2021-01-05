@@ -18,9 +18,8 @@ def call(){
         //4. Dar aviso si se ingreso un paso no existe
 
          stages {  
-            stage('Pipeline'){
-                //when { branch "feature-*" }
-                when { branch "develop" }
+            stage('Branch CI'){
+                when { branch "feature-*" }
                 steps {
                     script {
                         println 'Herramienta seleccionada : ' + params.TECNOLOGIA 
@@ -63,12 +62,11 @@ def call(){
                     }
                 }
             }
-            stage('Pipeline 2'){
+            stage('Skipped Branch CI/CD'){
                 when { 
-                    branch "develop"
-                    //not  { 
-                       // anyOf { branch 'feature-*'; branch 'develop'; branch 'release-v*' } 
-                    //} 
+                    not  { 
+                        anyOf { branch 'feature-*'; branch 'develop'; branch 'release-v*' } 
+                    } 
                 }
                 steps {
                     println 'Skipped full build.'
