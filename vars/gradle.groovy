@@ -8,9 +8,12 @@ def call(String chosenStages){
 
     //def tst = new Funciones()
     //return tst.sayHi()
-    def f = new Funciones()
-    //f.sayHi()
-    //println(f.sayHello('Alex'))
+    script {
+        def f = new Funciones()
+        f.sayHi()
+        println(f.sayHello('Alex'))
+    }
+   
 }
 
 def todos_los_pasos(){
