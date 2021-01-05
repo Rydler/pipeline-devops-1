@@ -18,6 +18,17 @@ def call(){
         //4. Dar aviso si se ingreso un paso no existe
 
          stages {  
+            stage('Branch CI/CD No a Procesar'){
+                when { 
+                    not  { 
+                        anyOf { branch 'feature-*'; branch 'develop'; branch 'release-v*' } // Este es cuando este funcionando todo
+                        //anyOf { branch 'develop'; branch 'release-v*' } // Modo pruebas como ejecuto feature con el comentario anterior , entra acá
+                    } 
+                }
+                steps {
+                    println 'Se procesan ramas solo con formato de inicio feature- , develop, realease-v.'
+                }
+            }
             stage('Branch CI'){
                 when { branch "feature-*" }
                 //when { branch "develop" } // Para generar el Skipped 
@@ -30,23 +41,12 @@ def call(){
                             case 'GRADLE':
                                ci_gradle "${params.STAGE_PIPELINE.toUpperCase()}"
                             break
-                            //case 'MAVEN':
-                               //ci_maven "${params.STAGE_PIPELINE.toUpperCase()}"
-                            //break
+                            case 'MAVEN':
+                               ci_maven "${params.STAGE_PIPELINE.toUpperCase()}"
+                            break
                         }
                         
                     }
-                }
-            }
-            stage('Skipped Branch CI/CD'){
-                when { 
-                    not  { 
-                        anyOf { branch 'feature-*'; branch 'develop'; branch 'release-v*' } // Este es cuando este funcionando todo
-                        //anyOf { branch 'develop'; branch 'release-v*' } // Modo pruebas como ejecuto feature con el comentario anterior , entra acá
-                    } 
-                }
-                steps {
-                    println 'Se procesan ramas solo con formato de inicio feature- , develop, realease-v.'
                 }
             }
         }
