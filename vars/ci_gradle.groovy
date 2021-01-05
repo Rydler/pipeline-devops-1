@@ -3,7 +3,7 @@ import pipeline.utilidades.*
 def call(String etapasEscogidas){
 
     //Defino Arreglo de Pasos Existentes por Tecnologia en CI
-    def ci_gradle_pasos = ['HOLA'];
+    def ci_gradle_pasos = ['BUILDANDTEST'];
 
     env.Tarea = 'Gradle CI Pipeline'
     figlet env.Tarea
@@ -25,12 +25,12 @@ def call(String etapasEscogidas){
    
 }
 
-def hola(){
+def buildAndTest(){
     script{
-        env.Tarea = 'hola'
+        env.Tarea = 'buildAndTest'
         figlet env.Tarea
     }
-    sh "buildAndTest,sonar,runJar,rest,nexusCI"
+    sh 'gradle clean build'
 }
 
 return this;

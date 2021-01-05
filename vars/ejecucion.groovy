@@ -30,10 +30,9 @@ def call(){
                             case 'GRADLE':
                                ci_gradle "${params.STAGE_PIPELINE.toUpperCase()}"
                             break
-                            case 'MAVEN':
-                               ci_maven "${params.STAGE_PIPELINE.toUpperCase()}"
-                            break
-
+                            //case 'MAVEN':
+                               //ci_maven "${params.STAGE_PIPELINE.toUpperCase()}"
+                            //break
                         }
                         
                     }
