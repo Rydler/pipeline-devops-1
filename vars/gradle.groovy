@@ -3,6 +3,7 @@
 	def ejecucion = load 'script.groovy'
 	ejecucion.call()
 */
+import pipeline.utilidades
 
 def call(String chosenStages){
     figlet 'gradle'
@@ -10,8 +11,8 @@ def call(String chosenStages){
     //Defino Arreglo de Pasos Existentes por Tecnologia
     def gradle_pasos = ['BUILD', 'TEST', 'SONAR', 'INICIAR','TEST_REST','NEXUS'];
 
-    def utils = new utils()
-    util.hola()
+    def f = new funciones()
+    f.hola()
 }
 
 def todos_los_pasos(){
