@@ -1,14 +1,12 @@
 import pipeline.utilidades.*
 
 def call(String etapasEscogidas){
-    figlet 'gradle'
-    
+
     //Defino Arreglo de Pasos Existentes por Tecnologia
     def gradle_pasos = ['BUILD', 'TEST', 'SONAR', 'INICIAR','TEST_REST','NEXUS'];
 
     env.Tarea = 'Gradle Pipeline'
-
-    sh 'env'
+    figlet env.Tarea
 
     def funciones   = new Funciones()
     def etapas      = funciones.validarEtapasValidas(etapasEscogidas, gradle_pasos)
@@ -17,6 +15,8 @@ def call(String etapasEscogidas){
         stage(it){
             try{
                 //Llamado dinamico
+                env.TAREA = it
+                figlet env.Tarea
                 "${it.toLowerCase()}"()
             }catch(Exception e) {
                 error "Stage ${it} tiene problemas : ${e}"
@@ -27,10 +27,8 @@ def call(String etapasEscogidas){
 }
 
 def build(){
-    env.TAREA = 'build'
-    figlet env.Tarea
-    //sh 'gradle clean build' 
-    sh 'echo build'
+    sh 'gradle clean build' 
+    //sh 'echo build'
 }
 
 def test(){
