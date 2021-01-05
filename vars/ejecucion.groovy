@@ -34,9 +34,21 @@ def call(){
                 //when { branch "develop" } // Para generar el Skipped 
                 steps {
                     script {
-                        println 'Herramienta seleccionada : ' + params.TECNOLOGIA                         
+                        println 'Herramienta seleccionada : ' + params.TECNOLOGIA        
+
+                        def pomFile = readFile('pom.xml')
+                        def pom = new XmlParser().parseText(pomFile)
+                        def gavMap = [:]
+                        gavMap['groupId'] =  pom['groupId'].text().trim()
+                        gavMap['artifactId'] =  pom['artifactId'].text().trim()
+                        gavMap['version'] =  pom['version'].text().trim()           
+
+                        println(gavMap['groupId'])   
+                        println(gavMap['artifactId'])  
+                        println(gavMap['version'])  
                         
                         //Paso la etapa de validar que son existentes para ejecutarse
+                        /*
                         switch(params.TECNOLOGIA) {
                             case 'GRADLE':
                                ci_gradle "${params.STAGE_PIPELINE.toUpperCase()}"
@@ -45,6 +57,7 @@ def call(){
                                ci_maven "${params.STAGE_PIPELINE.toUpperCase()}"
                             break
                         }
+                        */
                         
                     }
                 }
