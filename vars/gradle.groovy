@@ -6,7 +6,12 @@
 
 def call(String chosenStages){
     figlet 'gradle'
-    println(chosenStages)
+    
+    //Defino Arreglo de Pasos Existentes por Tecnologia
+    def gradle_pasos = ['BUILD', 'TEST', 'SONAR', 'INICIAR','TEST_REST','NEXUS'];
+
+    def utils = new utils()
+    util.hola()
 }
 
 def todos_los_pasos(){
