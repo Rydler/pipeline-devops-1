@@ -26,6 +26,10 @@ def call(String etapasEscogidas){
 }
 
 def hola(){
+    script{
+        env.Tarea = 'hola'
+        figlet env.Tarea
+    }
     sh "buildAndTest,sonar,runJar,rest,nexusCI"
 }
 
