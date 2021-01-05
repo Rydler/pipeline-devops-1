@@ -24,13 +24,13 @@ package pipeline.utilidades
 
             //Existen Etapas con Error
             if(etapasError.size() > 0){
-                env.MensajeErrorSlack = " Estos stages ingresados no existen : ${etapasError} . Stages disponibles para ejecutar: ${pipelineEtapas}"
+                env.MensajeErrorSlack = " Estos stages ingresados no existen : ${etapasError}.\nStages disponibles para ejecutar:\n${pipelineEtapas}"
                 error env.MensajeErrorSlack
             }
-            println "Validación de stages correcta. Se ejecutarán los siguientes stages en orden : ${etapas}"
+            println "Validación de stages correcta.\nSe ejecutarán los siguientes stages en orden :\n${etapas}"
         }else{
             etapas = pipelineEtapas
-            println "Parámetro de stages vacio. Se ejecutarán todas los stages en el siguiente orden : ${etapas}"
+            println "Parámetro de stages vacio.\nSe ejecutarán todas los stages en el siguiente orden :\n${etapas}"
         }
 
         return etapas
