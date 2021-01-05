@@ -46,17 +46,16 @@ def sonar(){
     script{
         env.Tarea = 'Sonar'
         figlet env.Tarea
-        println(env.ProyectoGrupoID + '' + ProyectoArtefactoID + '' + ProyectoVersion)
     }
         
     //SonnarScanner
-    //def scannerHome = tool 'sonar-scanner';
+    def scannerHome = tool 'sonar-scanner';
     //Sonnar Server
     //withSonarQubeEnv('sonar'){
-        //sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=${repository}-${BRANCH_NAME}-${BUILD_NUMBER} -Dsonar.java.binaries=build"
+        //sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=${env.ProyectoArtefactoID}-${BRANCH_NAME}-${BUILD_NUMBER} -Dsonar.java.binaries=build"
     //}
    
-    sh 'echo Hola Sonar'
+    sh 'env'
 }
 def iniciar(){
     script{
