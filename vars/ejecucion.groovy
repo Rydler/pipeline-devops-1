@@ -26,13 +26,14 @@ def call(){
                         sh 'env'
 
                         println(env.GIT_BRANCH)
+                         println(env.BRANCH_NAME)
 
-                        stage('Etapa de CI'){
+                        
                             when { anyOf { branch 'main'; branch 'develop' } }
                             steps{
                                 sh 'CI'
                             }
-                        }
+                    
                         /*
                         stage('Etapa de CI'){
                             when { anyOf { branch 'feature-*'; branch 'develop' } }
