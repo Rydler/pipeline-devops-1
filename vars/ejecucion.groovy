@@ -17,6 +17,26 @@ def call(){
         //4. Dar aviso si se ingreso un paso no existe
 
          stages {  
+            stage('Pipeline'){
+                steps {
+                    script {
+                        println 'Herramienta seleccionada : ' + params.TECNOLOGIA 
+
+                        //Paso la etapa de validar que son existentes para ejecutarse
+                        switch(params.TECNOLOGIA) {
+                            case 'GRADLE':
+                               gradle "${params.STAGE_PIPELINE.toUpperCase()}"
+                            break
+                            case 'MAVEN':
+                               maven "${params.STAGE_PIPELINE.toUpperCase()}"
+                            break
+
+                        }
+                        
+                    }
+                }
+            }
+            /*
             stage('ValidacionParametros'){
                 steps{
                     script{
@@ -122,6 +142,7 @@ def call(){
                     } //fin script Pipeline
                 }// fin steps
             }//END Pipeline Stage
+            */
             
            
         }

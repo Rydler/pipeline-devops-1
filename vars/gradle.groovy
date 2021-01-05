@@ -4,6 +4,11 @@
 	ejecucion.call()
 */
 
+def call(String chosenStages){
+    figlet 'gradle'
+    println(chosenStages)
+}
+
 def todos_los_pasos(){
   
     //Escribir directamente el código del stage, sin agregarle otra clausula de Jenkins.
