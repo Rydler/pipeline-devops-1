@@ -13,9 +13,13 @@ package pipeline.utilidades
 
         if(etapasEscogidas?.trim().toUpperCase()){
 
-            //etapasEscogidas.split(';').each{
-
-            //}
+            etapasEscogidas.split(';').each{
+                if(it in pipelineEtapas){
+                    etapas.add(it)
+                }else {
+                    error "${it} no existe como Stage. Stages disponibles para ejecutar: ${pipelineEtapas}"
+                }
+            }
             println "Validación de stages correcta. Se ejecutarán los siguientes stages en orden : ${etapas}"
         }else{
             etapas = pipelineEtapas
