@@ -1,7 +1,5 @@
-package pipeline.utilidades
-
-def hola(){
-    printl 'hola'
+class Funciones {
+  def aFunction() {
+    return "Hello from src folder!"
+  }
 }
-
-return this;
