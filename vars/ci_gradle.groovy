@@ -28,3 +28,5 @@ def call(String etapasEscogidas){
 def hola(){
     sh "buildAndTest,sonar,runJar,rest,nexusCI"
 }
+
+return this;
