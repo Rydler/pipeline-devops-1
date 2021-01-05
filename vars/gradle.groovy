@@ -25,6 +25,14 @@ def call(String etapasEscogidas){
    
 }
 
+def buildAndTest(){
+    script{
+        env.Tarea = 'buildAndTest'
+        figlet env.Tarea
+    }
+    sh 'gradle clean build'
+}
+
 def build(){
     script{
         env.Tarea = 'build'
