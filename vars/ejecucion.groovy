@@ -66,11 +66,12 @@ def call(){
             stage('Skipped Branch CI/CD'){
                 when { 
                     not  { 
-                        anyOf { branch 'feature-*'; branch 'develop'; branch 'release-v*' } 
+                         //anyOf { branch 'feature-*'; branch 'develop'; branch 'release-v*' } 
+                         anyOf { branch 'develop'; branch 'release-v*' } 
                     } 
                 }
                 steps {
-                    println 'Skipped full build.'
+                    println 'Se procesan ramas solo con formato de inicio feature- , develop, realease-v.'
                 }
             }
         }

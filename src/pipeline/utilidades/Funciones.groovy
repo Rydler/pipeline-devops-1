@@ -38,9 +38,4 @@ package pipeline.utilidades
 
     }
 
-
-    def validarRamasValidas(String nombreRama){
-        
-    }
-
 return this;
