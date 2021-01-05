@@ -11,13 +11,14 @@ def call(String etapasEscogidas){
     def funciones   = new Funciones()
     def etapas      = funciones.validarEtapasValidas(etapasEscogidas, ci_gradle_pasos)
 
+    //Setear Variables Globales de Proyecto a Ejecutar
+    funciones.obtenerValoresArchivoPOM('pom.xml')
+    println(funciones.GroupIDProject)
+
     etapas.each{
         stage(it){
             try{
                 //Llamado dinamico
-                //Setear Variables Globales de Proyecto a Ejecutar
-                funciones.obtenerValoresArchivoPOM('pom.xml')
-                println(funciones.GroupIDProject)
                 "${it.toLowerCase()}"()
             }catch(Exception e) {
                 env.MensajeErrorSlack = "Stage ${it.toLowerCase()} tiene problemas : ${e}"
@@ -42,8 +43,6 @@ def sonar(){
     script{
         env.Tarea = 'Sonar'
         figlet env.Tarea
-        def funciones   = new Funciones()
-        println(funciones.GroupIDProject)
     }
         
     //SonnarScanner
