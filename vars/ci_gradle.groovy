@@ -1,5 +1,9 @@
 import pipeline.utilidades.*
 
+interface POMXML {                                         
+    void artefacto(String name)                                 
+}
+
 def call(String etapasEscogidas){
 
     //Defino Arreglo de Pasos Existentes por Tecnologia
@@ -35,14 +39,15 @@ def buildandtest(){
         env.Tarea = 'BuildAndTest'
         figlet env.Tarea
     }
-    sh 'gradle clean build' 
-    //sh 'echo build'
+    //sh 'gradle clean build' 
+    sh 'echo buildandtest'
 }
 
 def sonar(){
     script{
         env.Tarea = 'Sonar'
         figlet env.Tarea
+        println(env.ProyectoGrupoID)
     }
         
     //SonnarScanner

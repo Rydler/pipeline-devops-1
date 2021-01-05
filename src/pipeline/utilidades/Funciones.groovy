@@ -53,6 +53,8 @@ package pipeline.utilidades
         GroupIDProject = gavMap['groupId']
         ArtifactIDProject = gavMap['artifactId']
         VersionProject = gavMap['version']
+
+        env.ProyectoGrupoID = pom['groupId'].text().trim()
     }
 
 return this;
