@@ -1,7 +1,11 @@
 package pipeline.utilidades
 
 class Funciones {
-  def aFunction() {
-    return "Hello from src folder!"
-  }
+    def sayHi() {
+        echo "Hi from CommonFuncs!"
+    }
+
+    def sayHello(str) {
+        echo "Hello ${str}"
+    }
 }
