@@ -37,6 +37,9 @@ def call(){
                         println 'Herramienta seleccionada : ' + params.TECNOLOGIA        
 
                         def funciones   = new pipeline.utilidades.Funciones()
+                        funciones.obtenerValoresArchivoPOM('pom.xml')
+
+                        println(funciones.GroupID)
                         
                         
                         //Paso la etapa de validar que son existentes para ejecutarse

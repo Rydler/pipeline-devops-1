@@ -47,6 +47,8 @@ package pipeline.utilidades
         gavMap['groupId'] =  pom['groupId'].text().trim()
         gavMap['artifactId'] =  pom['artifactId'].text().trim()
         gavMap['version'] =  pom['version'].text().trim()
+
+        GroupID = 'HOLA POS'
     }
 
 return this;
