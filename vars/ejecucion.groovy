@@ -19,14 +19,13 @@ def call(){
 
          stages {  
             stage('Pipeline'){
+                when { branch "feature-*" }
                 steps {
                     script {
                         println 'Herramienta seleccionada : ' + params.TECNOLOGIA 
-                        
-                        sh 'env'
 
                         println(env.GIT_BRANCH)
-                         println(env.BRANCH_NAME)
+                        println(env.BRANCH_NAME)
                     
                         /*
                         stage('Etapa de CI'){
@@ -63,27 +62,14 @@ def call(){
                     }
                 }
             }
-            stage('Branch Feature') {
-                when {
-                    branch 'feature-*'
-                }    
-                steps{
-                    script{
-
-                        echo "NOMBRE RAMA: ${BRANCH_NAME}"
-                        // INTEGRACION CONTINUA
-                        sh 'Hola Feature' 
-                    }
-                }
-            }
         }
         post {
 
             failure {
-                slackSend channel: 'U01DD0LGZLJ', color: 'danger', message: " [ Alexander Sanhueza ][ ${env.JOB_NAME} ][ ${params.TECNOLOGIA} ]\nEjecución fallida en stage ${env.Tarea}\n ${env.MensajeErrorSlack}. ", teamDomain: 'dipdevopsusach2020', tokenCredentialId: 'slack-diplomado-asc'
+                //slackSend channel: 'U01DD0LGZLJ', color: 'danger', message: " [ Alexander Sanhueza ][ ${env.JOB_NAME} ][ ${params.TECNOLOGIA} ]\nEjecución fallida en stage ${env.Tarea}\n ${env.MensajeErrorSlack}. ", teamDomain: 'dipdevopsusach2020', tokenCredentialId: 'slack-diplomado-asc'
             }
             success {
-                slackSend channel: 'U01DD0LGZLJ', color: 'good', message: " [ Alexander Sanhueza ][ ${env.JOB_NAME} ][ ${params.TECNOLOGIA} ]\nEjecucion Exitosa. ", teamDomain: 'dipdevopsusach2020', tokenCredentialId: 'slack-diplomado-asc'
+                //slackSend channel: 'U01DD0LGZLJ', color: 'good', message: " [ Alexander Sanhueza ][ ${env.JOB_NAME} ][ ${params.TECNOLOGIA} ]\nEjecucion Exitosa. ", teamDomain: 'dipdevopsusach2020', tokenCredentialId: 'slack-diplomado-asc'
             }
         }//fin post
     }//fin pipeline {}
