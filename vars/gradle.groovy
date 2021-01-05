@@ -9,6 +9,9 @@ def call(String chosenStages){
     //def tst = new Funciones()
     //return tst.sayHi()
     def funciones   = new Funciones()
+
+    funciones.sayHi()
+    funciones.sayHello('Alex')
    
 }
 
