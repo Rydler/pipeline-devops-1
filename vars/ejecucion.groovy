@@ -22,12 +22,7 @@ def call(){
                 steps {
                     script {
                         println 'Herramienta seleccionada : ' + params.TECNOLOGIA 
-
-                        env.Tarea = ''
-                        env.MensajeErrorSlack = ''
-
-                        sh 'env'
-
+                        
                         //Paso la etapa de validar que son existentes para ejecutarse
                         switch(params.TECNOLOGIA) {
                             case 'GRADLE':

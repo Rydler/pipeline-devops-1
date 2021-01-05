@@ -6,6 +6,11 @@ def call(String etapasEscogidas){
     //Defino Arreglo de Pasos Existentes por Tecnologia
     def gradle_pasos = ['BUILD', 'TEST', 'SONAR', 'INICIAR','TEST_REST','NEXUS'];
 
+    env.Tarea = ''
+    env.MensajeErrorSlack = ''
+
+    sh 'env'
+
     def funciones   = new Funciones()
     def etapas      = funciones.validarEtapasValidas(etapasEscogidas, gradle_pasos)
 
@@ -25,8 +30,8 @@ def call(String etapasEscogidas){
 def build(){
     env.TAREA = 'build'
     figlet env.Tarea
-    sh 'gradle clean build' 
-    //sh 'echo build'
+    //sh 'gradle clean build' 
+    sh 'echo build'
 }
 
 def test(){
