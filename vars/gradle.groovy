@@ -13,7 +13,7 @@ def call(String etapasEscogidas){
         stage(it){
             try{
                 //Llamado dinamico
-                println(${it.toLowerCase()})
+                "${it.toLowerCase()}"()
             }catch(Exception e) {
                 error "Stage ${it} tiene problemas : ${e}"
             }
