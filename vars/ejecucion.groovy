@@ -29,10 +29,17 @@ def call(){
                          println(env.BRANCH_NAME)
 
                         
-                            when { anyOf { branch 'main'; branch 'develop' } }
-                            steps{
-                                sh 'CI'
+                        when {
+                            branch 'feature-*'
+                        }    
+                        steps{
+                            script{
+
+                                echo "NOMBRE RAMA: ${BRANCH_NAME}"
+                                // INTEGRACION CONTINUA
+                                sh 'CI CALL'
                             }
+                        }
                     
                         /*
                         stage('Etapa de CI'){
