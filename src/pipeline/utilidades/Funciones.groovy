@@ -63,4 +63,17 @@ package pipeline.utilidades
 
     }
 
+    def validarArchivosGradleoMaven(){
+
+        def archivo = (params.TECNOLOGIA == 'GRADLE') ? 'build.gradle' : 'pom.xml'
+
+        if(!(fileExists(archivo))){
+            env.MensajeErrorSlack = " No se encontro el Archivo Base para la Tecnlogia : ${paramsTECNOLOGIA} , favor revisar."
+            error env.MensajeErrorSlack
+        }
+
+        println "Validación de Archivos Gradle / Maven correcta.\n"
+
+    }
+
 return this;

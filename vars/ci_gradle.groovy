@@ -17,6 +17,8 @@ def call(String etapasEscogidas){
 
     funciones.validarNombreRepositorioGit()
 
+    funciones.validarArchivosGradleoMaven()
+
     println "PASE POR ACA XXXXX"
 
     /*
