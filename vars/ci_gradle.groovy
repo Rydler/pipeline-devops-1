@@ -1,4 +1,5 @@
 import pipeline.utilidades.*
+import pipeline.git.*
 
 def call(String etapasEscogidas){
 
@@ -18,7 +19,7 @@ def call(String etapasEscogidas){
 
     println "Nombre Repositorio:" + env.NombreRepositorioGit
 
-    
+    /*
     etapas.each{
         stage(it){
             try{
@@ -30,7 +31,7 @@ def call(String etapasEscogidas){
             }
         }
     }
-    
+    */
    
 }
 
