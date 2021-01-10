@@ -18,7 +18,9 @@ def call(String etapasEscogidas){
     funciones.validarNombreRepositorioGit()
 
     funciones.validarArchivosGradleoMaven()
-    
+    // when { anyOf { branch 'feature-*'; branch 'develop' } }
+    println(branch)
+    /*
     etapas.each{
         stage(it){
             try{
@@ -30,7 +32,7 @@ def call(String etapasEscogidas){
             }
         }
     }
-   
+    */
 }
 
 
