@@ -15,9 +15,9 @@ def call(String etapasEscogidas){
     //Setear Variables ENV de Proyecto a Ejecutar
     funciones.obtenerValoresArchivoPOM('pom.xml')
 
-    funciones.obtenerNombreRepositorioGit()
+    funciones.validarNombreRepositorioGit()
 
-    println "Nombre Repositorio:" + env.NombreRepositorioGit
+    println "PASE POR ACA XXXXX"
 
     /*
     etapas.each{

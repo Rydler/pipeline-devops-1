@@ -51,9 +51,15 @@ package pipeline.utilidades
         env.ProyectoVersion     =  pom['version'].text().trim()
     }
 
-    def obtenerNombreRepositorioGit(){
+    def validarNombreRepositorioGit(){
      
-        env.NombreRepositorioGit = scm.getUserRemoteConfigs()[0].getUrl().tokenize('/').last().split("\\.")[0]
+        nombreRepositorioGit = scm.getUserRemoteConfigs()[0].getUrl().tokenize('/').last().split("\\.")[0]
+        //Validar que el repositorio es un MS
+        if(!(nombreRepositorioGit.contains("ms") || nombreRepositorioGit.contains("MS"))){
+            env.MensajeErrorSlack = " El nombre del repositorio Git (${etapasError}) , no es un Micro Servicio."
+            error env.MensajeErrorSlack
+        }
+        println "Validación de Nombre Repositori Git es MS correcta.\n"
 
     }
 
