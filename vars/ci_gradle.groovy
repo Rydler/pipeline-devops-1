@@ -18,7 +18,7 @@ def call(String etapasEscogidas){
 
     println "Nombre Repositorio:" + env.NombreRepositorioGit
 
-    /*
+    
     etapas.each{
         stage(it){
             try{
@@ -30,7 +30,7 @@ def call(String etapasEscogidas){
             }
         }
     }
-    */
+    
    
 }
 
