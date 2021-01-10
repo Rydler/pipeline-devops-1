@@ -4,7 +4,11 @@ import pipeline.git.*
 def call(String etapasEscogidas){
 
     //Defino Arreglo de Pasos Existentes por Tecnologia
-    def ci_gradle_pasos = ['BUILDANDTEST','SONAR','INICIAR','TEST_REST','NEXUS'];
+    if(GIT_BRANCH.contains("develop")){
+        def ci_gradle_pasos = ['BUILDANDTEST','SONAR','INICIAR','TEST_REST','NEXUS','GITCREATERELEASE'];
+    }else{
+        def ci_gradle_pasos = ['BUILDANDTEST','SONAR','INICIAR','TEST_REST','NEXUS'];
+    }
 
     env.Tarea = 'Gradle CI Pipeline'
     figlet env.Tarea
@@ -18,9 +22,7 @@ def call(String etapasEscogidas){
     funciones.validarNombreRepositorioGit()
 
     funciones.validarArchivosGradleoMaven()
-    // when { anyOf { branch 'feature-*'; branch 'develop' } }
-    println(branch )
-    /*
+
     etapas.each{
         stage(it){
             try{
@@ -32,7 +34,7 @@ def call(String etapasEscogidas){
             }
         }
     }
-    */
+    
 }
 
 
