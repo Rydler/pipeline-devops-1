@@ -19,7 +19,7 @@ def call(String etapasEscogidas){
 
     funciones.validarArchivosGradleoMaven()
     // when { anyOf { branch 'feature-*'; branch 'develop' } }
-    println(branch)
+    println(branch )
     /*
     etapas.each{
         stage(it){
