@@ -51,4 +51,10 @@ package pipeline.utilidades
         env.ProyectoVersion     =  pom['version'].text().trim()
     }
 
+    def obtenerNombreRepositorioGit(){
+     
+        env.NombreRepositorioGit = scm.getUserRemoteConfigs()[0].getUrl().tokenize('/').last().split("\\.")[0]
+
+    }
+
 return this;

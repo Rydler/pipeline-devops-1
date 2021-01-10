@@ -14,6 +14,11 @@ def call(String etapasEscogidas){
     //Setear Variables ENV de Proyecto a Ejecutar
     funciones.obtenerValoresArchivoPOM('pom.xml')
 
+    funciones.obtenerNombreRepositorioGit()
+
+    println "Nombre Repositorio:" + env.NombreRepositorioGit
+
+    /*
     etapas.each{
         stage(it){
             try{
@@ -25,6 +30,7 @@ def call(String etapasEscogidas){
             }
         }
     }
+    */
    
 }
 
@@ -81,6 +87,22 @@ def nexus(){
     }
     nexusPublisher nexusInstanceId: 'nexus', nexusRepositoryId: 'ci-nexus', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: 'jar', filePath: "${WORKSPACE}/build/libs/${env.ProyectoArtefactoID}-${env.ProyectoVersion}.jar"]], mavenCoordinate: [artifactId: "${env.ProyectoArtefactoID}", groupId: "${env.ProyectoGrupoID}", packaging: 'jar', version: "${env.ProyectoVersion}"]]]
     //sh 'echo nexus'
+}
+
+def gitCreateRelease(){
+    //Paso la etapa de validar que son existentes para ejecutarse
+    def git = new GitMetodos()
+    //Dinamico la version
+    if(git.checkIfBranchExists('release-v1-0-0')){
+        if(git.isBranchUpdated(env.GIT_BRANCH,'release-v1-0-0')){
+            println 'La rama esta creada y actualizada contra ' + env.GIT_BRANCH
+        }else{
+            git.deleteBranch('release-v1-0-0')
+            git.createBranch('release-v1-0-0', env.GIT_BRANCH)
+        }
+    }else {
+        git.createBranch('release-v1-0-0', env.GIT_BRANCH)
+    }
 }
 
 return this;

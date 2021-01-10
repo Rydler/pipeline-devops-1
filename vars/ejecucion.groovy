@@ -37,7 +37,6 @@ def call(){
                         println 'Herramienta seleccionada : ' + params.TECNOLOGIA          
                         figlet params.TECNOLOGIA
 
-                        //Paso la etapa de validar que son existentes para ejecutarse
                         
                         switch(params.TECNOLOGIA) {
                             case 'GRADLE':
@@ -47,7 +46,7 @@ def call(){
                                //ci_maven "${params.STAGE_PIPELINE.toUpperCase()}"
                                sh 'No Soportado Aun.'
                             break
-                        }
+                        } 
                         
                         
                     }
