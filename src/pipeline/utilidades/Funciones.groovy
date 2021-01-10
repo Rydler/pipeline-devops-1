@@ -53,9 +53,9 @@ package pipeline.utilidades
 
     def validarNombreRepositorioGit(){
      
-        nombreRepositorioGit = scm.getUserRemoteConfigs()[0].getUrl().tokenize('/').last().split("\\.")[0]
+        env.NombreRepositorioGit = scm.getUserRemoteConfigs()[0].getUrl().tokenize('/').last().split("\\.")[0]
         //Validar que el repositorio es un MS
-        if(!(nombreRepositorioGit.contains("ms") || nombreRepositorioGit.contains("MS"))){
+        if(!(env.NombreRepositorioGit.contains("ms") || nombreRepositorioGit.contains("MS"))){
             env.MensajeErrorSlack = " El nombre del repositorio Git (${etapasError}) , no es un Micro Servicio."
             error env.MensajeErrorSlack
         }
