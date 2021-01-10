@@ -18,10 +18,7 @@ def call(String etapasEscogidas){
     funciones.validarNombreRepositorioGit()
 
     funciones.validarArchivosGradleoMaven()
-
-    println "PASE POR ACA XXXXX"
-
-    /*
+    
     etapas.each{
         stage(it){
             try{
@@ -33,7 +30,6 @@ def call(String etapasEscogidas){
             }
         }
     }
-    */
    
 }
 
