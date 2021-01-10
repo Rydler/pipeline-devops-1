@@ -4,12 +4,8 @@ import pipeline.git.*
 def call(String etapasEscogidas){
 
     //Defino Arreglo de Pasos Existentes por Tecnologia
-    if(GIT_BRANCH.contains("develop")){
-        def ci_gradle_pasos = ['BUILDANDTEST','SONAR','INICIAR','TEST_REST','NEXUS','GITCREATERELEASE'];
-    }else{
-        def ci_gradle_pasos = ['BUILDANDTEST','SONAR','INICIAR','TEST_REST','NEXUS'];
-    }
-
+    def ci_gradle_pasos = (GIT_BRANCH.contains("develop") ? ['BUILDANDTEST','SONAR','INICIAR','TEST_REST','NEXUS','GITCREATERELEASE'] : ['BUILDANDTEST','SONAR','INICIAR','TEST_REST','NEXUS'])
+  
     env.Tarea = 'Gradle CI Pipeline'
     figlet env.Tarea
 
