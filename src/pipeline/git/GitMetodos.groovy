@@ -3,8 +3,9 @@ package pipeline.git
 def checkIfBranchExists(String rama){
 
     def output = sh (script : "git pull ; git ls-remote --heads origin ${rama}", returnStdout: true)
+    println "output:" + output
     def respuesta = (output?.trim()) ? true : false
-
+     println "respuesta:" + respuesta
     return respuesta
 }
 
