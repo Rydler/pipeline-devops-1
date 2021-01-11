@@ -79,22 +79,11 @@ package pipeline.utilidades
     def validarFormatoTAG(){
         try
         {   
-            if("5.2.0.123".matches(/^(\d+\.)?(\d+\.)?(\*|\d+)$/g)) {
-                 println "success 1"
-            }else{
-                println "error 1"
-            }
-
-            if("5-2-0".matches(/^(\d+\.)?(\d+\.)?(\*|\d+)$/g)) {
-                 println "success 2"
-            }else{
-                println "error 2"
-            }
-            if("5.2.0".matches(/^(\d+\.)?(\d+\.)?(\*|\d+)$/g)) {
-                 println "success 3"
-            }else{
-                println "error 3"
-            }
+           if(assert "v3.12.4" ==~ /v\d{1,3}\.\d{1,3}\.\d{1,3}/){
+               println "success"
+           }else{
+               println "error"
+           }
         }
         catch(Exception e){ echo e
         }
