@@ -92,12 +92,14 @@ def gitCreateRelease(){
     def git = new GitMetodos()
     //Dinamico la version
     if(git.checkIfBranchExists('release-v1-0-0')){
+        /*
         if(git.isBranchUpdated(env.GIT_BRANCH,'release-v1-0-0')){
             println 'La rama esta creada y actualizada contra ' + env.GIT_BRANCH
         }else{
             git.deleteBranch('release-v1-0-0')
             git.createBranch('release-v1-0-0', env.GIT_BRANCH)
-        }
+        }*/
+        println "SI Existe"
     }else {
         git.createBranch('release-v1-0-0', env.GIT_BRANCH)
     }
