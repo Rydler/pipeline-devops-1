@@ -98,8 +98,8 @@ def gitcreaterelease(){
             println 'La rama esta creada y actualizada contra ' + env.GIT_BRANCH
         }else{
             println 'La rama NO esta creada y actualizada contra ' + env.GIT_BRANCH
-            //git.deleteBranch(ramaTmp)
-            //git.createBranch(ramaTmp, env.GIT_BRANCH)
+            git.deleteBranch(ramaTmp)
+            git.createBranch(ramaTmp, env.GIT_BRANCH)
         }
     }else {
         println "No Existe Rama"

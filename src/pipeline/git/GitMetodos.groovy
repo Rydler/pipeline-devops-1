@@ -23,8 +23,8 @@ def isBranchUpdated(String ramaOrigen, String ramaDestino){
     return respuesta
 }
 
-def deleteBranch(String branch){
-    sh "git pull ; git push origin --delete ${branch}"
+def deleteBranch(String rama){
+    sh "git pull ; git push origin --delete ${rama}; git branch -D ${rama}"
 }
 
 def createBranch(String ramaDestino, String ramaOrigen){
