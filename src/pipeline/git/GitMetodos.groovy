@@ -58,6 +58,10 @@ def deployToDevelop(){
 }
 
 def tagMain(){
+    //Borrar Tag Local
+    sh "git tag -d ${env.VersionTag}"
+    // Remoto 
+    sh "git push --delete origin ${env.VersionTag}"
     sh "git tag ${env.VersionTag}" 
     sh "git push origin --tags"
 }
