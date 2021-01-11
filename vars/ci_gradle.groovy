@@ -92,7 +92,7 @@ def gitcreaterelease(){
     //Paso la etapa de validar que son existentes para ejecutarse
     def git = new GitMetodos()
     //Viene con el Formato v1-0-0
-    ramaTmp = "release-"+${env.VersionTag}
+    ramaTmp = "release-"+env.VersionTag
     if(git.checkIfBranchExists(ramaTmp)){
         println "SI Existe Rama "
         if(git.isBranchUpdated(env.GIT_BRANCH,ramaTmp)){
