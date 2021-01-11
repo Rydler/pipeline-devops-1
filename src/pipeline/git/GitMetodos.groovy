@@ -28,7 +28,8 @@ def deleteBranch(String branch){
 }
 
 def createBranch(String ramaDestino, String ramaOrigen){
-  println "Crear Rama"
+  sh "echo Crear Rama"
+  /*
   sh '''
     git reset --hard HEAD
     git pull
@@ -36,6 +37,7 @@ def createBranch(String ramaDestino, String ramaOrigen){
     git checkout -b '''+${ramaDestino}+'''
     git push origin '''+${ramaDestino}+'''
   '''
+  */
   /*
   sh "git reset --hard HEAD"
   sh "git pull"
