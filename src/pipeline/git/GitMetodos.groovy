@@ -4,7 +4,7 @@ def checkIfBranchExists(String rama){
 
     def output = sh (script : "git pull ; git ls-remote --heads origin ${rama}", returnStdout: true)
     println "output:" + output
-    def respuesta = (output?.trim().contains('refs/heads/'${rama})) ? true : false
+    def respuesta = (output?.trim().contains("refs/heads/${rama}")) ? true : false
      println "respuesta:" + respuesta
     return respuesta
 }
