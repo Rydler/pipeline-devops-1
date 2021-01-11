@@ -21,7 +21,7 @@ def call(String etapasEscogidas){
 
     funciones.validarFormatoTAG()
 
-    println "TAG:" + params.TAG_VERSION
+    println "TAG:" + env.VersionTag
     /*
     etapas.each{
         stage(it){
