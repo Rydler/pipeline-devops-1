@@ -4,7 +4,7 @@ import pipeline.git.*
 def call(String etapasEscogidas){
 
     //Defino Arreglo de Pasos Existentes por Tecnologia
-    def cd_gradle_pasos = ['DOWNLOADNEXUS','INICIARDOWNLOADJAR','TEST_REST','NEXUSUPLOAD'];
+    def cd_gradle_pasos = ['DOWNLOADNEXUS','INICIARDOWNLOADJAR','TEST_REST','NEXUSUPLOAD','GITMERGEMAIN', 'GITMERGEDEVELOP','GITTAGMAIN'];
 
     env.Tarea = 'Gradle CD Pipeline'
     figlet env.Tarea
@@ -77,7 +77,8 @@ def nexusupload(){
 }
 
 def gitmergemain(){
-    sh "echo Merge Main"
+    def git = new GitMetodos()
+    git.deployToMainAndDevelop()
 }
 
 

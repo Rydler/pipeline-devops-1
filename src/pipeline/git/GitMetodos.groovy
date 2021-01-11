@@ -45,4 +45,9 @@ def createBranch(String ramaDestino, String ramaOrigen){
    */
 }
 
+def deployToMainAndDevelop(){
+    sh "git checkout main"
+    sh "git merge ${GIT_BRANCH} --no-ff"
+}
+
 return this;
