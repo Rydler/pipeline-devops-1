@@ -78,7 +78,17 @@ def nexusupload(){
 
 def gitmergemain(){
     def git = new GitMetodos()
-    git.deployToMainAndDevelop()
+    git.deployToMain()
+}
+
+def gitmergedevelop(){
+    def git = new GitMetodos()
+    git.deployToDevelop()
+}
+
+def gittagmain(){
+    def git = new GitMetodos()
+    git.tagMain()
 }
 
 

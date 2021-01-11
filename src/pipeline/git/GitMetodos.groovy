@@ -45,10 +45,22 @@ def createBranch(String ramaDestino, String ramaOrigen){
    */
 }
 
-def deployToMainAndDevelop(){
+def deployToMain(){
     sh "git checkout main"
     sh "git merge ${GIT_BRANCH} --no-ff"
     sh "git push"
 }
+
+def deployToDevelop(){
+    sh "git checkout develop"
+    sh "git merge ${GIT_BRANCH} --no-ff"
+    sh "git push"
+}
+
+def tagMain(){
+    sh "git tag ${env.VersionTag}" 
+    sh "git push origin --tags"
+}
+
 
 return this;
