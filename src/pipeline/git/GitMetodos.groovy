@@ -73,7 +73,7 @@ def tagMain(){
     }
     
     //Generar Tag y Subirlo
-    sh "git checkout main" 
+    //sh "git checkout main" 
     sh "git tag ${env.VersionTag}" 
     sh "git push origin --tags"
 }
