@@ -77,17 +77,16 @@ package pipeline.utilidades
     }
 
     def validarFormatoTAG(){
-        try
-        {  
-            def matcher = (params.TAG_VERSION =~ /v\d{1,3}\.\d{1,3}\.\d{1,3}/).findAll() 
-           if(matcher){
-               println "success"
-           }else{
-               println "error"
-           }
-        }
-        catch(Exception e){ echo e
-        }
+        
+       def matcher = (params.TAG_VERSION =~ /v\d{1,3}\.\d{1,3}\.\d{1,3}/).findAll() 
+       if(matcher){
+           //Como el laboratorio usa - lo reemplazo
+           params.TAG_VERSION = params.TAG_VERSION.replace(params.TAG_VERSION,".","-")
+       }else{
+            env.MensajeErrorSlack = " El formato de versión debe ser v1.0.0, favor revisar."
+            error env.MensajeErrorSlack
+       }
+     
     }
 
 return this;

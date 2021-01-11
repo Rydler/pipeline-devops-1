@@ -20,6 +20,8 @@ def call(String etapasEscogidas){
     funciones.validarArchivosGradleoMaven()
 
     funciones.validarFormatoTAG()
+
+    println "TAG:" + params.TAG_VERSION
     /*
     etapas.each{
         stage(it){
