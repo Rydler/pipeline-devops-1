@@ -102,6 +102,7 @@ def gitcreaterelease(){
         }*/
         println "SI Existe"
     }else {
+        println "No Existe"
         git.createBranch(ramaTmp, env.GIT_BRANCH)
     }
 }
