@@ -82,6 +82,7 @@ package pipeline.utilidades
        if(matcher){
            //Como el laboratorio usa - lo reemplazo
            println "variable:" + params.TAG_VERSION.replace(".","-")
+           params.TAG_VERSION = params.TAG_VERSION.replace(".","-")
            //params.TAG_VERSION = tmp.replace('.','-')
        }else{
             env.MensajeErrorSlack = " El formato de versión debe ser v1.0.0, favor revisar."
