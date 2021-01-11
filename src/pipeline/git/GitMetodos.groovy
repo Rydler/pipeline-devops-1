@@ -28,7 +28,7 @@ def deleteBranch(String branch){
 }
 
 def createBranch(String ramaDestino, String ramaOrigen){
-  printl "Crear Rama"
+  println "Crear Rama"
   sh '''
     git reset --hard HEAD
     git pull
