@@ -76,4 +76,15 @@ package pipeline.utilidades
 
     }
 
+    def validarFormatoTAG(){
+        try
+        {   
+            if("5.2.0.123".findAll(/^[0-9]+(\.[0-9]+)?(\.[0-9]+)?/)[0]) {
+                 println "success"
+            } 
+        }
+        catch(Exception e){ echo e
+        }
+    }
+
 return this;

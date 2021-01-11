@@ -9,6 +9,8 @@ def call(){
             choice(name: 'TECNOLOGIA', choices: ['GRADLE', 'MAVEN'], description: 'Elección Herramienta de automatización de construcción de código de software')
 
             string(name: 'STAGE_PIPELINE', defaultValue: '', description: 'Elección de cual etapa elegir a procesar dentro del Pipeline')
+
+            string(name: 'TAG_VERSION', defaultValue: '', description: 'Indica la Versión que estamos ejecutando para Release, Merge Main y/o Develop and TAG')
         }
         
         //lo que debe hacer
