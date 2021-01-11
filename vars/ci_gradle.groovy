@@ -93,6 +93,7 @@ def gitcreaterelease(){
     //A futuro hacer dinamica la rama las versiones
     ramaTmp = "release-v1-0-0"
     if(git.checkIfBranchExists(ramaTmp)){
+        git.isBranchUpdated(env.GIT_BRANCH,ramaTmp)
         /*
         if(git.isBranchUpdated(env.GIT_BRANCH,ramaTmp)){
             println 'La rama esta creada y actualizada contra ' + env.GIT_BRANCH
