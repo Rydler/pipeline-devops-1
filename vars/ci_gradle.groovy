@@ -93,17 +93,16 @@ def gitcreaterelease(){
     //A futuro hacer dinamica la rama las versiones
     ramaTmp = "release-v1-0-0"
     if(git.checkIfBranchExists(ramaTmp)){
-        git.isBranchUpdated(env.GIT_BRANCH,ramaTmp)
-        /*
+        println "SI Existe Rama "
         if(git.isBranchUpdated(env.GIT_BRANCH,ramaTmp)){
             println 'La rama esta creada y actualizada contra ' + env.GIT_BRANCH
         }else{
-            git.deleteBranch(ramaTmp)
-            git.createBranch(ramaTmp, env.GIT_BRANCH)
-        }*/
-        println "SI Existe"
+            println 'La rama NO esta creada y actualizada contra ' + env.GIT_BRANCH
+            //git.deleteBranch(ramaTmp)
+            //git.createBranch(ramaTmp, env.GIT_BRANCH)
+        }
     }else {
-        println "No Existe"
+        println "No Existe Rama"
         git.createBranch(ramaTmp, env.GIT_BRANCH)
     }
 }

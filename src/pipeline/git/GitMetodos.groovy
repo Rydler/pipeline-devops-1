@@ -13,14 +13,13 @@ def isBranchUpdated(String ramaOrigen, String ramaDestino){
 
     sh "git checkout ${ramaOrigen}; git pull"
     sh "git checkout ${ramaDestino}; git pull"
-
-    //y luego el comando de abajo pero local como la siguiente linea
+    //Comando local
     def output =  sh (script :"git log ${ramaOrigen}..${ramaDestino}" , returnStdout: true)
-    println "output:" + output
-    //sh "git config --add remote.origin.fetch +refs/heads/${ramaOrigen}:refs/remotes/origin/${ramaOrigen}"
-    //def output =  sh (script :"git log origin/${ramaOrigen}..origin/${ramaDestino}" , returnStdout: true)
-    def respuesta = (!output?.trim()) ? true : false
-    println "respuesta:" + respuesta
+    //println "output:" + output
+    //Si el output es vacio = sin cambios
+    //si no es vacio = Con cambios
+    def respuesta = (output?.trim()) ? true : false
+    //println "respuesta:" + respuesta
     return respuesta
 }
 
