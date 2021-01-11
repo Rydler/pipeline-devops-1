@@ -21,8 +21,6 @@ def call(String etapasEscogidas){
 
     funciones.validarFormatoTAG()
 
-    println "TAG:" + env.VersionTag
-    /*
     etapas.each{
         stage(it){
             try{
@@ -34,7 +32,6 @@ def call(String etapasEscogidas){
             }
         }
     }
-    */
 }
 
 
@@ -94,8 +91,8 @@ def nexus(){
 def gitcreaterelease(){
     //Paso la etapa de validar que son existentes para ejecutarse
     def git = new GitMetodos()
-    //A futuro hacer dinamica la rama las versiones
-    ramaTmp = "release-v"+${params.TAG_VERSION}
+    //Viene con el Formato v1-0-0
+    ramaTmp = "release-"+${env.VersionTag}
     if(git.checkIfBranchExists(ramaTmp)){
         println "SI Existe Rama "
         if(git.isBranchUpdated(env.GIT_BRANCH,ramaTmp)){
