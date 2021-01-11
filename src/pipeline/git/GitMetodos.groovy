@@ -15,11 +15,11 @@ def isBranchUpdated(String ramaOrigen, String ramaDestino){
     sh "git checkout ${ramaDestino}; git pull"
     //Comando local
     def output =  sh (script :"git log ${ramaOrigen}..${ramaDestino}" , returnStdout: true)
-    println "output:" + output
+    //println "output:" + output
     //Si el output es vacio = sin cambios
     //si no es vacio = Con cambios
-    def respuesta = (output?.trim()) ? true : false
-    println "respuesta:" + respuesta
+    def respuesta = (output?.trim()) ? false : true //output?.trim() => valida si existe un output 
+    //println "respuesta:" + respuesta
     return respuesta
 }
 
