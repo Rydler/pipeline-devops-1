@@ -1,4 +1,5 @@
 import pipeline.utilidades.*
+import pipeline.git.*
 
 def call(String etapasEscogidas){
 
@@ -13,6 +14,12 @@ def call(String etapasEscogidas){
 
     //Setear Variables ENV de Proyecto a Ejecutar
     funciones.obtenerValoresArchivoPOM('pom.xml')
+
+    funciones.validarNombreRepositorioGit()
+
+    funciones.validarArchivosGradleoMaven()
+
+    funciones.validarFormatoTAG()
 
     etapas.each{
         stage(it){
@@ -66,6 +73,10 @@ def nexusupload(){
     }
    nexusPublisher nexusInstanceId: 'nexus', nexusRepositoryId: 'cd-nexus', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: 'jar', filePath: "${WORKSPACE}/${env.ProyectoArtefactoID}-${env.ProyectoVersion}.jar"]], mavenCoordinate: [artifactId: "${env.ProyectoArtefactoID}", groupId: "${env.ProyectoGrupoID}", packaging: 'jar', version: "${env.ProyectoVersion}"]]]
    //sh 'echo nexusUpload'
+}
+
+def gitmergemain(){
+    sh "echo Merge Main"
 }
 
 
