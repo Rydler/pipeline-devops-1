@@ -32,19 +32,10 @@ def createBranch(String ramaDestino, String ramaOrigen){
   sh '''
       git reset --hard HEAD
       git pull
-      git checkout ${ramaOrigen}
-      git checkout -b ${ramaDestino}
-      git push origin ${ramaDestino}
+      git checkout '''${ramaOrigen}'''
+      git checkout -b '''${ramaDestino}'''
+      git push origin '''${ramaDestino}'''
     '''
-  /*
-  sh '''
-    git reset --hard HEAD
-    git pull
-    git checkout '''+${ramaOrigen}+'''
-    git checkout -b '''+${ramaDestino}+'''
-    git push origin '''+${ramaDestino}+'''
-  '''
-  */
   /*
   sh "git reset --hard HEAD"
   sh "git pull"
