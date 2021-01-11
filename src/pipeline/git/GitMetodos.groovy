@@ -67,7 +67,7 @@ def tagMain(){
         sh "git tag -d ${env.VersionTag}"
     }
 
-    def outputRemoto = sh (script : "git ls-remote --tags origin | grep ${env.VersionTag}", returnStdout: true)
+    def outputRemoto = sh (script : "git ls-remote --tags origin ${env.VersionTag}", returnStdout: true)
     println "outputRemoto:" + outputRemoto
     def respuestaRemoto = (outputRemoto?.trim().contains("${env.VersionTag}")) ? true : false
      println "respuestaRemoto:" + respuestaRemoto
