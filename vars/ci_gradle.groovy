@@ -87,7 +87,7 @@ def nexus(){
     //sh 'echo nexus'
 }
 
-def gitCreateRelease(){
+def gitcreaterelease(){
     //Paso la etapa de validar que son existentes para ejecutarse
     def git = new GitMetodos()
     //Dinamico la version
