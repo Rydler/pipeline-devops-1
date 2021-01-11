@@ -90,19 +90,19 @@ def nexus(){
 def gitcreaterelease(){
     //Paso la etapa de validar que son existentes para ejecutarse
     def git = new GitMetodos()
-    //Dinamico la version
-    if(git.checkIfBranchExists('release-v1-0-0')){
+    //A futuro hacer dinamica la rama las versiones
+    ramaTmp = "release-v1-0-0"
+    if(git.checkIfBranchExists(ramaTmp)){
         /*
-        if(git.isBranchUpdated(env.GIT_BRANCH,'release-v1-0-0')){
+        if(git.isBranchUpdated(env.GIT_BRANCH,ramaTmp)){
             println 'La rama esta creada y actualizada contra ' + env.GIT_BRANCH
         }else{
-            git.deleteBranch('release-v1-0-0')
-            git.createBranch('release-v1-0-0', env.GIT_BRANCH)
+            git.deleteBranch(ramaTmp)
+            git.createBranch(ramaTmp, env.GIT_BRANCH)
         }*/
         println "SI Existe"
     }else {
-        println "NO Existe"
-        //git.createBranch('release-v1-0-0', env.GIT_BRANCH)
+        git.createBranch(ramaTmp, env.GIT_BRANCH)
     }
 }
 
