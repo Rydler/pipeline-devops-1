@@ -58,10 +58,21 @@ def deployToDevelop(){
 }
 
 def tagMain(){
-    //Borrar Tag Local
-    sh "git tag -d ${env.VersionTag}"
-    // Remoto 
-    sh "git push --delete origin ${env.VersionTag}"
+    def outputLocal = sh (script : "git tag -l ${env.VersionTag}", returnStdout: true)
+    def respuestaLocal = (outputLocal?.trim().contains("${env.VersionTag}")) ? true : false
+    if(respuestaLocal){
+        //Borrar Tag Local
+        sh "git tag -d ${env.VersionTag}"
+    }
+
+    def outputRemoto = sh (script : "git ls-remote --tags origin | grep ${env.VersionTag}", returnStdout: true)
+    def respuestaRemoto = (outputRemoto?.trim().contains("${env.VersionTag}")) ? true : false
+    if(respuestaRemoto){
+        // Remoto 
+        sh "git push --delete origin ${env.VersionTag}"
+    }
+    
+    //Generar Tag y Subirlo
     sh "git tag ${env.VersionTag}" 
     sh "git push origin --tags"
 }
