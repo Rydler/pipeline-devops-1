@@ -78,8 +78,9 @@ package pipeline.utilidades
 
     def validarFormatoTAG(){
         try
-        {   
-           if(assert "v3.12.4" ==~ /v\d{1,3}\.\d{1,3}\.\d{1,3}/){
+        {  
+            def matcher = (params.TAG_VERSION =~ /v\d{1,3}\.\d{1,3}\.\d{1,3}/).findAll() 
+           if(matcher){
                println "success"
            }else{
                println "error"
