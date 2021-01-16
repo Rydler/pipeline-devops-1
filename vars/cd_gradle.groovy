@@ -52,7 +52,7 @@ def iniciardownloadjar(){
         figlet env.Tarea
     }
     sh "nohup java -jar ${env.ProyectoArtefactoID}-${env.ProyectoVersion}.jar & >/dev/null"
-    sh "sleep 20"
+    sh "sleep 10"
 }
 
 def test_rest(){
@@ -60,7 +60,7 @@ def test_rest(){
         env.Tarea = 'test_rest'
         figlet env.Tarea
     }
-    sleep 20
+    sleep 10
     sh "curl -X GET 'http://localhost:8081/rest/mscovid/test?msg=testing'"
     //sh 'echo rest'
 }
