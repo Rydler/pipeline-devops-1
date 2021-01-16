@@ -63,7 +63,7 @@ def iniciar(){
         env.Tarea = 'run'
         figlet env.Tarea
     }
-    sh 'nohup gradle bootRun &'
+    sh 'nohup bash gradlew  bootRun &'
     sleep 20
     //sh 'echo run'
 }
@@ -74,7 +74,7 @@ def test_rest(){
         figlet env.Tarea
     }
     sleep 20
-    sh "curl -X GET 'http://localhost:8082/rest/mscovid/test?msg=testing'"
+    sh 'curl -X GET http://localhost:8082/rest/mscovid/test?msg=testing'
     //sh 'echo rest'
 }
 
