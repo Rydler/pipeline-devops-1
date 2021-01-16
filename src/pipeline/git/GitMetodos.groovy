@@ -61,7 +61,7 @@ def deployToMain(){
     output =  sh (script :"git pull" , returnStdout: true)
     println "output:" + output
     output =  sh (script :"git checkout main" , returnStdout: true)
-    println "output:" + output
+    cc
     output =  sh (script :"git pull" , returnStdout: true)
     output =  sh (script :"git merge ${GIT_BRANCH} --no-ff" , returnStdout: true)
     println "output:" + output
@@ -71,9 +71,10 @@ def deployToMain(){
 }
 
 def deployToDevelop(){
+    output =  sh (script :"git pull" , returnStdout: true)
+    println "output:" + output
     sh "git checkout develop"
     sh "git merge ${GIT_BRANCH} --no-ff"
-    sh 
 }
 
 def tagMain(){
