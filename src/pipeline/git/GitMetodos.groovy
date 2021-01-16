@@ -55,6 +55,7 @@ def deployToMain(){
     sh "echo $USER"
     def output =  sh (script :"git pull" , returnStdout: true)
     println "output:" + output
+    sh "git config --replace-all remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'"
     output =  sh (script :"git checkout main" , returnStdout: true)
     println "output:" + output
     output =  sh (script :"git pull" , returnStdout: true)
