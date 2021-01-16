@@ -4,8 +4,10 @@ import pipeline.git.*
 def call(String etapasEscogidas){
 
     //Defino Arreglo de Pasos Existentes por Tecnologia
-    def ci_gradle_pasos = (GIT_BRANCH.contains("develop") ? ['BUILDANDTEST','SONAR','INICIAR','TEST_REST','NEXUS','GITCREATERELEASE'] : ['BUILDANDTEST','SONAR','INICIAR','TEST_REST','NEXUS'])
-  
+    //def ci_gradle_pasos = (GIT_BRANCH.contains("develop") ? ['BUILDANDTEST','SONAR','INICIAR','TEST_REST','NEXUS','GITCREATERELEASE'] : ['BUILDANDTEST','SONAR','INICIAR','TEST_REST','NEXUS'])
+    def ci_gradle_pasos = (GIT_BRANCH.contains("develop") ? ['buildandtest','sonar','nexusUpload','gitCreateRelease'] : ['buildandtest','sonar','nexusUpload'])
+
+
     env.Tarea = 'Gradle CI Pipeline'
     figlet env.Tarea
 
@@ -58,6 +60,8 @@ def sonar(){
         //sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=${env.ProyectoArtefactoID}-${GIT_BRANCH}-${env.ProyectoVersion} -Dsonar.java.binaries=build"
     }
 }
+
+/*
 def iniciar(){
     script{
         env.Tarea = 'run'
@@ -77,6 +81,7 @@ def test_rest(){
     sh 'curl -X GET http://localhost:8081/rest/mscovid/test?msg=testing'
     //sh 'echo rest'
 }
+*/
 
 def nexus(){
     script{
