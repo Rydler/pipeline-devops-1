@@ -29,20 +29,23 @@ def deleteBranch(String rama){
 
 def createBranch(String ramaDestino, String ramaOrigen){
   sh "echo Crear Rama"
-  sh """
+  /*sh """
       git reset --hard HEAD
       git pull
       git checkout ${ramaOrigen}
       git checkout -b ${ramaDestino}
       git push origin ${ramaDestino}
     """
-  /*
-  sh "git reset --hard HEAD"
-  sh "git pull"
-  sh "git checkout ${ramaOrigen}"
-  sh "git checkout -b ${ramaDestino}"
-  sh "git push origin ${ramaDestino}"
-   */
+    */
+  
+  
+    sh "git reset --hard HEAD"
+    sh "git pull"
+    sh "git checkout ${ramaOrigen}"
+    sh "git checkout -b ${ramaDestino}"
+   // sh "git push origin ${ramaDestino}"
+    def output =  sh (script :"git push origin ${ramaDestino}" , returnStdout: true)
+    println "output:" + output
 }
 
 def deployToMain(){
