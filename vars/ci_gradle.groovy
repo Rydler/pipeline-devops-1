@@ -83,7 +83,7 @@ def test_rest(){
 }
 */
 
-def nexus(){
+def nexusUpload(){
     script{
         env.Tarea = 'nexus'
         figlet env.Tarea
