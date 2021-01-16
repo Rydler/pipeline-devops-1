@@ -41,7 +41,7 @@ def downloadnexus(){
         env.Tarea = 'DownloadNexus'
         figlet env.Tarea
     }
-    sh  "curl -X GET -u admin:admin http://localhost:8081/repository/ci-nexus/" + env.ProyectoGrupoID.replace('.','/') + "/${env.ProyectoArtefactoID}/${env.ProyectoVersion}/${env.ProyectoArtefactoID}-${env.ProyectoVersion}.jar -O"
+    sh  "curl -X GET -u admin:admin http://192.168.0.28:8081/repository/ci-repo/" + env.ProyectoGrupoID.replace('.','/') + "/${env.ProyectoArtefactoID}/${env.ProyectoVersion}/${env.ProyectoArtefactoID}-${env.ProyectoVersion}.jar -O"
     //EN el Log Running on Jenkins  in XXX , para saber la ruta
     //sh 'echo DownloadNexus'
 }
@@ -71,7 +71,7 @@ def nexusupload(){
         env.Tarea = 'NexusUpload'
         figlet env.Tarea
     }
-    nexusPublisher nexusInstanceId: 'nexus', nexusRepositoryId: 'cd-nexus', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: 'jar', filePath: "${WORKSPACE}/${env.ProyectoArtefactoID}-${env.ProyectoVersion}.jar"]], mavenCoordinate: [artifactId: "${env.ProyectoArtefactoID}", groupId: "${env.ProyectoGrupoID}", packaging: 'jar', version: "${env.VersionTag}"]]]
+    nexusPublisher nexusInstanceId: 'Nexus_server_local', nexusRepositoryId: 'cd-repo', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: 'jar', filePath: "${WORKSPACE}/${env.ProyectoArtefactoID}-${env.ProyectoVersion}.jar"]], mavenCoordinate: [artifactId: "${env.ProyectoArtefactoID}", groupId: "${env.ProyectoGrupoID}", packaging: 'jar', version: "${env.VersionTag}"]]]
    //nexusPublisher nexusInstanceId: 'nexus', nexusRepositoryId: 'cd-nexus', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: 'jar', filePath: "${WORKSPACE}/${env.ProyectoArtefactoID}-${env.ProyectoVersion}.jar"]], mavenCoordinate: [artifactId: "${env.ProyectoArtefactoID}", groupId: "${env.ProyectoGrupoID}", packaging: 'jar', version: "${env.ProyectoVersion}"]]]
    //sh 'echo nexusUpload'
 }

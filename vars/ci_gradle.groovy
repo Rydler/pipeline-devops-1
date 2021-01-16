@@ -51,7 +51,7 @@ def sonar(){
     }
         
     //SonnarScanner
-    def scannerHome = tool 'sonar-scanner';
+    def scannerHome = tool 'sonar';
     //Sonnar Server
     withSonarQubeEnv('sonar'){
         sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=${env.NombreRepositorioGit}-${GIT_BRANCH}-${BUILD_ID} -Dsonar.java.binaries=build"
@@ -84,7 +84,7 @@ def nexus(){
         figlet env.Tarea
         //println("${WORKSPACE}/build/libs/${env.ProyectoArtefactoID}-${env.ProyectoVersion}.jar")
     }
-    nexusPublisher nexusInstanceId: 'nexus', nexusRepositoryId: 'ci-nexus', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: 'jar', filePath: "${WORKSPACE}/build/libs/${env.ProyectoArtefactoID}-${env.ProyectoVersion}.jar"]], mavenCoordinate: [artifactId: "${env.ProyectoArtefactoID}", groupId: "${env.ProyectoGrupoID}", packaging: 'jar', version: "${env.ProyectoVersion}"]]]
+    nexusPublisher nexusInstanceId: 'Nexus_server_local', nexusRepositoryId: 'ci-repo', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: 'jar', filePath: "${WORKSPACE}/build/libs/${env.ProyectoArtefactoID}-${env.ProyectoVersion}.jar"]], mavenCoordinate: [artifactId: "${env.ProyectoArtefactoID}", groupId: "${env.ProyectoGrupoID}", packaging: 'jar', version: "${env.ProyectoVersion}"]]]
     //sh 'echo nexus'
 }
 
