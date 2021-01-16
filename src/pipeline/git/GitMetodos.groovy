@@ -54,11 +54,11 @@ def createBranch(String ramaDestino, String ramaOrigen){
 def deployToMain(){
     def output =  sh (script :"git pull" , returnStdout: true)
     println "output:" + output
-    def output =  sh (script :"git checkout main" , returnStdout: true)
+    output =  sh (script :"git checkout main" , returnStdout: true)
     println "output:" + output
-    def output =  sh (script :"git merge ${GIT_BRANCH} --no-ff" , returnStdout: true)
+    output =  sh (script :"git merge ${GIT_BRANCH} --no-ff" , returnStdout: true)
     println "output:" + output
-    def output =  sh (script :"git push" , returnStdout: true)
+    output =  sh (script :"git push" , returnStdout: true)
     println "output:" + output
 }
 
