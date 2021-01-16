@@ -46,7 +46,7 @@ def createBranch(String ramaDestino, String ramaOrigen){
 }
 
 def deployToMain(){
-    sh "git checkout main"
+    sh "sudo git checkout main"
     sh "git merge ${GIT_BRANCH} --no-ff"
     sh "git push"
 }
