@@ -38,7 +38,7 @@ def createBranch(String ramaDestino, String ramaOrigen){
     """
     */
   
-  
+  sh "echo $USER"
     sh "git reset --hard HEAD"
     sh "git pull"
     sh "git checkout ${ramaOrigen}"
