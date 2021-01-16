@@ -5,7 +5,7 @@ def call(String etapasEscogidas){
 
     //Defino Arreglo de Pasos Existentes por Tecnologia
     //def ci_gradle_pasos = (GIT_BRANCH.contains("develop") ? ['BUILDANDTEST','SONAR','INICIAR','TEST_REST','NEXUS','GITCREATERELEASE'] : ['BUILDANDTEST','SONAR','INICIAR','TEST_REST','NEXUS'])
-    def ci_gradle_pasos = (GIT_BRANCH.contains("develop") ? ['buildandtest','sonar','nexusUpload','gitCreateRelease'] : ['buildandtest','sonar','nexusUpload'])
+    def ci_gradle_pasos = (GIT_BRANCH.contains("develop") ? ['BUILDANDTEST','SONAR','NEXUS','GITCREATERELEASE'] : ['BUILDANDTEST','SONAR','NEXUS'])
 
 
     env.Tarea = 'Gradle CI Pipeline'
@@ -83,7 +83,7 @@ def test_rest(){
 }
 */
 
-def nexusUpload(){
+def nexus(){
     script{
         env.Tarea = 'nexus'
         figlet env.Tarea
