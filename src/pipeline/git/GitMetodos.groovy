@@ -53,6 +53,8 @@ def createBranch(String ramaDestino, String ramaOrigen){
 
 def deployToMain(){
     sh "echo $USER"
+    output =  sh (script :"git status" , returnStdout: true)
+    println "output:" + output
     def output =  sh (script :"git pull" , returnStdout: true)
     println "output:" + output
     sh "git config --replace-all remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'"
