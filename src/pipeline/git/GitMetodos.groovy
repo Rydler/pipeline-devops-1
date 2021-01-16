@@ -56,8 +56,10 @@ def deployToMain(){
     println "output:" + output
     output =  sh (script :"git checkout main" , returnStdout: true)
     println "output:" + output
+    output =  sh (script :"git pull" , returnStdout: true)
     output =  sh (script :"git merge ${GIT_BRANCH} --no-ff" , returnStdout: true)
     println "output:" + output
+    output =  sh (script :"git pull" , returnStdout: true)
     output =  sh (script :"git push" , returnStdout: true)
     println "output:" + output
 }
