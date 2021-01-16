@@ -40,7 +40,7 @@ def buildandtest(){
         env.Tarea = 'BuildAndTest'
         figlet env.Tarea
     }
-    sh 'gradle clean build' 
+    sh './gradlew clean build'
     //sh 'env'
 }
 
