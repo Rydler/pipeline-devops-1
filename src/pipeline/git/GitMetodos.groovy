@@ -39,10 +39,14 @@ def createBranch(String ramaDestino, String ramaOrigen){
     */
   
   sh "echo $USER"
-    sh "git reset --hard HEAD"
-    sh "git pull"
-    sh "git checkout ${ramaOrigen}"
-    sh "git checkout -b ${ramaDestino}"
+    def output1 =  sh (script :"git reset --hard HEAD" , returnStdout: true)
+    println "output:" + output1
+    def output2 =  sh (script :"git pull" , returnStdout: true)
+    println "output:" + output2
+    def output3 =  sh (script :"git checkout ${ramaOrigen}" , returnStdout: true)
+    println "output:" + output3
+    def output4 =  sh (script :"git checkout -b ${ramaDestino}" , returnStdout: true)
+    println "output:" + output4
    // sh "git push origin ${ramaDestino}"
     def output =  sh (script :"git push origin ${ramaDestino}" , returnStdout: true)
     println "output:" + output
