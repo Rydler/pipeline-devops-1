@@ -52,7 +52,7 @@ def createBranch(String ramaDestino, String ramaOrigen){
 }
 
 def deployToMain(){
-    sh "echo ${GIT_BRANCH}"
+    sh "git checkout ${GIT_BRANCH}"
     output =  sh (script :"git status" , returnStdout: true)
     println "output:" + output
     def output =  sh (script :"git pull" , returnStdout: true)
