@@ -13,6 +13,7 @@ def call(String etapasEscogidas){
     funciones.validarNombreRepositorioGit()
     funciones.validarArchivosGradleoMaven()
     funciones.validarFormatoTAG()
+    funciones.validarVersion()
     etapas.each{
         stage(it){
             try{

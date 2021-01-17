@@ -45,7 +45,6 @@ def sonar(){
         env.Tarea = 'Sonar'
         figlet env.Tarea
     }
-        
     //SonnarScanner
     def scannerHome = tool 'sonar';
     //Sonnar Server
