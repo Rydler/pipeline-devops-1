@@ -1,16 +1,12 @@
 import pipeline.utilidades.*
 
 def call(String etapasEscogidas){
-
     //Defino Arreglo de Pasos Existentes por Tecnologia
     def gradle_pasos = ['BUILD', 'TEST', 'SONAR', 'INICIAR','TEST_REST','NEXUS'];
-
     env.Tarea = 'Gradle Pipeline'
     figlet env.Tarea
-
     def funciones   = new Funciones()
     def etapas      = funciones.validarEtapasValidas(etapasEscogidas, gradle_pasos)
-
     etapas.each{
         stage(it){
             try{
@@ -22,9 +18,7 @@ def call(String etapasEscogidas){
             }
         }
     }
-   
 }
-
 
 def build(){
     script{
@@ -49,16 +43,15 @@ def sonar(){
         env.Tarea = 'sonar'
         figlet env.Tarea
     }
-        
     //SonnarScanner
     def scannerHome = tool 'sonar-scanner';
     //Sonnar Server
     withSonarQubeEnv('sonar'){
         sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=ejemplo-gradle -Dsonar.java.binaries=build"
     }
-        
     //sh 'echo sonar'
 }
+
 def iniciar(){
     script{
         env.Tarea = 'run'
@@ -66,7 +59,6 @@ def iniciar(){
     }
     sh 'nohup gradle bootRun &'
     sleep 20
-    //sh 'echo run'
 }
 
 def test_rest(){
@@ -76,7 +68,6 @@ def test_rest(){
     }
     sleep 20
     sh "curl -X GET 'http://localhost:8082/rest/mscovid/test?msg=testing'"
-    //sh 'echo rest'
 }
 
 def nexus(){

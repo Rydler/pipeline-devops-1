@@ -2,25 +2,17 @@ import pipeline.utilidades.*
 import pipeline.git.*
 
 def call(String etapasEscogidas){
-
     //Defino Arreglo de Pasos Existentes por Tecnologia
     def cd_gradle_pasos = ['DOWNLOADNEXUS','INICIARDOWNLOADJAR','TEST_REST','NEXUSUPLOAD','GITMERGEMAIN', 'GITMERGEDEVELOP','GITTAGMAIN'];
-
     env.Tarea = 'Gradle CD Pipeline'
     figlet env.Tarea
-
     def funciones   = new Funciones()
     def etapas      = funciones.validarEtapasValidas(etapasEscogidas, cd_gradle_pasos)
-
     //Setear Variables ENV de Proyecto a Ejecutar
     funciones.obtenerValoresArchivoPOM('pom.xml')
-
     funciones.validarNombreRepositorioGit()
-
     funciones.validarArchivosGradleoMaven()
-
     funciones.validarFormatoTAG()
-
     etapas.each{
         stage(it){
             try{
@@ -32,9 +24,7 @@ def call(String etapasEscogidas){
             }
         }
     }
-   
 }
-
 
 def downloadnexus(){
     script{
@@ -65,7 +55,6 @@ def test_rest(){
     //sh 'echo rest'
 }
 
-
 def nexusupload(){
     script{
         env.Tarea = 'NexusUpload'
@@ -90,6 +79,5 @@ def gittagmain(){
     def git = new GitMetodos()
     git.tagMain()
 }
-
 
 return this;

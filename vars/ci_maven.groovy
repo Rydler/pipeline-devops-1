@@ -1,16 +1,12 @@
 import pipeline.utilidades.*
 
 def call(String etapasEscogidas){
-
     //Defino Arreglo de Pasos Existentes por Tecnologia
     def ci_maven_pasos = ['HOLA'];
-
     env.Tarea = 'Maven CI Pipeline'
     figlet env.Tarea
-
     def funciones   = new Funciones()
     def etapas      = funciones.validarEtapasValidas(etapasEscogidas, ci_maven_pasos)
-
     etapas.each{
         stage(it){
             try{
@@ -22,9 +18,7 @@ def call(String etapasEscogidas){
             }
         }
     }
-   
 }
-
 
 def hola(){
     script{
@@ -33,7 +27,5 @@ def hola(){
     }
     sh 'echo Hola Maven CI'
 }
-
-
 
 return this;

@@ -2,27 +2,18 @@ import pipeline.utilidades.*
 import pipeline.git.*
 
 def call(String etapasEscogidas){
-
     //Defino Arreglo de Pasos Existentes por Tecnologia
     //def ci_gradle_pasos = (GIT_BRANCH.contains("develop") ? ['BUILDANDTEST','SONAR','INICIAR','TEST_REST','NEXUS','GITCREATERELEASE'] : ['BUILDANDTEST','SONAR','INICIAR','TEST_REST','NEXUS'])
     def ci_gradle_pasos = (GIT_BRANCH.contains("develop") ? ['BUILDANDTEST','SONAR','NEXUS','GITCREATERELEASE'] : ['BUILDANDTEST','SONAR','NEXUS'])
-
-
     env.Tarea = 'Gradle CI Pipeline'
     figlet env.Tarea
-
     def funciones   = new Funciones()
     def etapas      = funciones.validarEtapasValidas(etapasEscogidas, ci_gradle_pasos)
-
     //Setear Variables ENV de Proyecto a Ejecutar
     funciones.obtenerValoresArchivoPOM('pom.xml')
-
     funciones.validarNombreRepositorioGit()
-
     funciones.validarArchivosGradleoMaven()
-
     funciones.validarFormatoTAG()
-
     etapas.each{
         stage(it){
             try{
@@ -60,28 +51,6 @@ def sonar(){
         //sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=${env.ProyectoArtefactoID}-${GIT_BRANCH}-${env.ProyectoVersion} -Dsonar.java.binaries=build"
     }
 }
-
-/*
-def iniciar(){
-    script{
-        env.Tarea = 'run'
-        figlet env.Tarea
-    }
-    sh 'nohup bash gradlew  bootRun &'
-    sleep 20
-    //sh 'echo run'
-}
-
-def test_rest(){
-    script{
-        env.Tarea = 'rest'
-        figlet env.Tarea
-    }
-    sleep 20
-    sh 'curl -X GET http://localhost:8081/rest/mscovid/test?msg=testing'
-    //sh 'echo rest'
-}
-*/
 
 def nexus(){
     script{

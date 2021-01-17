@@ -1,10 +1,8 @@
 
 def call(){
-    
     //Estructura de Pipeline Declarativo
     pipeline {
         agent any
-
         parameters { 
             choice(name: 'TECNOLOGIA', choices: ['GRADLE', 'MAVEN'], description: 'Elección Herramienta de automatización de construcción de código de software')
 
@@ -19,7 +17,7 @@ def call(){
         //3. Validar que el STAGE ingresado ësta disponible dentro del pipeline y la herramienta a utilizar gradle o maven
         //4. Dar aviso si se ingreso un paso no existe
 
-         stages {  
+        stages {  
             stage('Branch CI/CD No a Procesar'){
                 when { 
                     not  { 
@@ -38,8 +36,6 @@ def call(){
                     script {
                         println 'Herramienta seleccionada : ' + params.TECNOLOGIA          
                         figlet params.TECNOLOGIA
-
-                        
                         switch(params.TECNOLOGIA) {
                             case 'GRADLE':
                                ci_gradle "${params.STAGE_PIPELINE.toUpperCase()}"
@@ -48,9 +44,7 @@ def call(){
                                //ci_maven "${params.STAGE_PIPELINE.toUpperCase()}"
                                sh 'No Soportado Aun.'
                             break
-                        } 
-                        
-                        
+                        }
                     }
                 }
             }
@@ -72,23 +66,18 @@ def call(){
                                sh 'No Soportado Aun.'
                             break
                         }
-                        
-                        
                     }
                 }
             }
         }
         post {
-
             failure {
                 println('Failure')
                 slackSend channel: 'C01DC6PJZU6', color: 'danger', message: " [ Grupo 5 ][ ${env.JOB_NAME} ][ ${params.TECNOLOGIA} ]\nEjecución fallida en stage ${env.Tarea}\n ${env.MensajeErrorSlack}. ", teamDomain: 'dipdevopsusach2020', tokenCredentialId: 'Slack_integration'
-                //slackSend channel: 'U01DD0LGZLJ', color: 'danger', message: " [ Alexander Sanhueza ][ ${env.JOB_NAME} ][ ${params.TECNOLOGIA} ]\nEjecución fallida en stage ${env.Tarea}\n ${env.MensajeErrorSlack}. ", teamDomain: 'dipdevopsusach2020', tokenCredentialId: 'slack-diplomado-asc'
             }
             success {
                  println('Sucess')
                  slackSend channel: 'C01DC6PJZU6', color: 'good', message: " [ Grupo 5 ][ ${env.JOB_NAME} ][ ${params.TECNOLOGIA} ]\nEjecucion Exitosa. ", teamDomain: 'dipdevopsusach2020', tokenCredentialId: 'Slack_integration'
-                //slackSend channel: 'U01DD0LGZLJ', color: 'good', message: " [ Alexander Sanhueza ][ ${env.JOB_NAME} ][ ${params.TECNOLOGIA} ]\nEjecucion Exitosa. ", teamDomain: 'dipdevopsusach2020', tokenCredentialId: 'slack-diplomado-asc'
             }
         }//fin post
     }//fin pipeline {}
