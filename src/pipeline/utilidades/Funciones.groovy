@@ -77,9 +77,9 @@ def validarFormatoTAG(){
 def validarVersion(){
     def branchGit = "release-" + params.TAG_VERSION.replace(".","-")
     println branchGit
-    println "---- ${env.BRANCH_NAME}"
+    println env.BRANCH_NAME
     if(branchGit != env.BRANCH_NAME){
-        env.MensajeErrorSlack = " El numero de version debe ser ${(env.BRANCH_NAME.replace("-",".")).replace("release-","")} no ${params.TAG_VERSION}"
+        env.MensajeErrorSlack = " El numero de version debe ser ${(env.BRANCH_NAME.replace("release-","")).replace("-",".")} no ${params.TAG_VERSION}    "
         error env.MensajeErrorSlack()
     }
 }
