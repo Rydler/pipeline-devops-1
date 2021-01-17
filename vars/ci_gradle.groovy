@@ -37,8 +37,8 @@ def buildandtest(){
     println("Running ${env.BUILD_ID} on ${env.JENKINS_URL}")
     sh 'printenv'
     println("${env}")
-    println("${currentBuild.getParent().getModules()}")
-    println("${scm}")
+    println("${scm.getUserRemoteConfigs()[0]}")
+    println("${currentBuild.getParent()}")
 }
 
 def sonar(){
