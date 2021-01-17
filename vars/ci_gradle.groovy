@@ -34,7 +34,9 @@ def buildandtest(){
         figlet env.Tarea
     }
     sh './gradlew clean build'
-    //sh 'env'
+    println("${env}")
+    println("${currentBuild}")
+    println("${scm}")
 }
 
 def sonar(){
