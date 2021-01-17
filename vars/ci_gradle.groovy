@@ -34,9 +34,14 @@ def buildandtest(){
         figlet env.Tarea
     }
     sh './gradlew clean build'
+    println("Running ${env.BUILD_ID} on ${env.JENKINS_URL}")
+    sh 'printenv'
     println("${env}")
     println("${currentBuild}")
     println("${scm}")
+    sh 'env'
+    sh 'currentBuild'
+    sh 'scm'
 }
 
 def sonar(){
