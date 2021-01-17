@@ -79,8 +79,8 @@ def validarVersion(){
     println branchGit
     println "---- ${env.BRANCH_NAME}"
     if(branchGit != env.BRANCH_NAME){
-        env.MensajeErrorSlack = " El formato numero de version debe ser ${env.BRANCH_NAME} no ${branchGit}"
-        error env.MensajeErrorSlack
+        env.MensajeErrorSlack = " El numero de version debe ser ${(env.BRANCH_NAME.replace("-",".")).replace("release-","")} no ${params.TAG_VERSION}"
+        error env.MensajeErrorSlack()
     }
 }
 
