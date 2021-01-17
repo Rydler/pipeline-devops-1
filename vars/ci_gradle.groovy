@@ -36,9 +36,8 @@ def buildandtest(){
     sh './gradlew clean build'
     println("Running ${env.BUILD_ID} on ${env.JENKINS_URL}")
     sh 'printenv'
-    println("${env}")
-    println("${scm.getUserRemoteConfigs()[0]}")
-    println("${currentBuild.getParent()}")
+    //println("${scm.getUserRemoteConfigs()[0]}")
+    //println("${currentBuild.getParent()}")
 }
 
 def sonar(){
